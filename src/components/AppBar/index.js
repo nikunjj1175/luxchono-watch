@@ -63,6 +63,11 @@ function DrawerAppBar(props) {
             <ListItemText primary={"Contact"} />
           </ListItemButton>
         </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }} onClick={() => navigate("/login")}>
+            <ListItemText primary={"Login"} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -114,7 +119,12 @@ function DrawerAppBar(props) {
             <Button className="!text-secondary">{"About"}</Button>
             <Button className="!text-secondary">{"Contact"}</Button>
 
-            <Button className="!text-secondary" onClick={()=>navigate("/login")}>{"Login"}</Button>
+            <Button
+              className="!text-secondary"
+              onClick={() => navigate("/login")}
+            >
+              {"Login"}
+            </Button>
             {/* <LoginIcon className="text-secondary ml-[-0.5rem]" /> */}
           </Box>
         </Toolbar>
