@@ -16,24 +16,39 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Logo from "../../assets/image/logo02.svg";
 import Logo2 from "../../assets/image/logo.svg";
-import LoginIcon from "@mui/icons-material/Login";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { actions } from "../../redux/store";
+import LogoutModal from "../common/LogoutModal";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import LikeDrawer from "../LikeDrawer";
+import { useSelector } from "react-redux";
+import CartDrawer from "../CartDrawer";
+import "./style.scss";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const DialogOpen = useSelector((state) => state.modal.MobileDrawer);
+
+  const token = localStorage.getItem("lw-token");
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const { pathname } = location;
+
+  console.log(pathname, "pathname");
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
       <Typography
         variant="h6"
         sx={{
@@ -49,24 +64,65 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate("/home");
+              actions.modal.closeMobileDrawer();
+            }}
+          >
             <ListItemText primary={"Home"} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText primary={"About"} />
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate("/products");
+              actions.modal.closeMobileDrawer();
+            }}
+          >
+            <ListItemText primary={"Products"} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText primary={"Contact"} />
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate("/order");
+              actions.modal.closeMobileDrawer();
+            }}
+          >
+            <ListItemText primary={"Order"} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }} onClick={() => navigate("/login")}>
-            <ListItemText primary={"Login"} />
+          <ListItemButton
+            sx={{ textAlign: "center" }}
+            onClick={() => {
+              navigate("/profile");
+              actions.modal.closeMobileDrawer();
+            }}
+          >
+            <ListItemText primary={"Profile"} />
           </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          {token ? (
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => actions.modal.openLogoutModal()}
+            >
+              <ListItemText primary={"Logout"} />
+            </ListItemButton>
+          ) : (
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => navigate("/login")}
+            >
+              <ListItemText primary={"Login"} />
+            </ListItemButton>
+          )}
         </ListItem>
       </List>
     </Box>
@@ -76,80 +132,171 @@ function DrawerAppBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
-        component="nav"
-        sx={{
-          background: "#1b120d;",
-          height: "4.5rem",
-          display: "flex",
-          justifyContent: "center",
-          boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon className="text-secondary" />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            <div className="flex items-center gap-[10px] text-secondary">
-              <img
-                src={Logo}
-                alt="Logo"
-                style={{ width: "55px", height: "55px" }}
-              />
-              <div>
-                <span> {"Luxchono"}</span>
-              </div>
-            </div>
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button className="!text-secondary">{"Home"}</Button>
-            <Button className="!text-secondary">{"About"}</Button>
-            <Button className="!text-secondary">{"Contact"}</Button>
-
-            <Button
-              className="!text-secondary"
-              onClick={() => navigate("/login")}
-            >
-              {"Login"}
-            </Button>
-            {/* <LoginIcon className="text-secondary ml-[-0.5rem]" /> */}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
+    <>
+      <Box sx={{ display: "flex" }} className="mnavbar">
+        <CssBaseline />
+        <AppBar
+          component="nav"
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
+            background: "#1b120d;",
+            height: "4.5rem",
+            display: "flex",
+            justifyContent: "center",
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
           }}
         >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              sx={{ mr: 2, display: { sm: "none" }, width: "100%" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  gap: "10px",
+                }}
+              >
+                <div onClick={() => actions.modal.openMobileDrawer()}>
+                  <MenuIcon className="text-secondary" />
+                  <span className="text-secondary"> {"Luxchono"}</span>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ShoppingCartOutlinedIcon
+                    className="!text-secondary cursor-pointer"
+                    onClick={() => actions.modal.openCartDrawer()}
+                  />
+                  <FavoriteBorderIcon
+                    className="!text-secondary cursor-pointer"
+                    onClick={() => {
+                      actions.modal.openLikeDrawer();
+                    }}
+                  />
+                  <SearchOutlinedIcon
+                    className="!text-secondary cursor-pointer"
+                    onClick={() => navigate("/products")}
+                  />
+                </div>
+              </div>
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            >
+              <div className="flex items-center gap-[10px] text-secondary">
+                <img
+                  src={Logo}
+                  alt="Logo"
+                  style={{ width: "55px", height: "55px" }}
+                />
+                <div>
+                  <span> {"Luxchono"}</span>
+                </div>
+              </div>
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "block", display: "flex" } }}>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <Button
+                  className={`!text-secondary ${
+                    pathname === "/home" ? `active_button` : ""
+                  } `}
+                  onClick={() => navigate("/home")}
+                >
+                  {"Home"}
+                </Button>
+                <Button
+                  className={`!text-secondary ${
+                    pathname === "/products" ? `active_button` : ""
+                  } `}
+                  onClick={() => navigate("/products")}
+                >
+                  {"Products"}
+                </Button>
+                <Button
+                  className={`!text-secondary ${
+                    pathname === "/order" ? `active_button` : ""
+                  } `}
+                  onClick={() => navigate("/order")}
+                >
+                  {"Order"}
+                </Button>
+                <Button
+                  className={`!text-secondary ${
+                    pathname === "/profile" ? `active_button` : ""
+                  } `}
+                  onClick={() => navigate("/profile")}
+                >
+                  {"Profile"}
+                </Button>
+
+                {token ? (
+                  <Button
+                    className="!text-secondary"
+                    onClick={() => actions.modal.openLogoutModal()}
+                  >
+                    {"Logout"}
+                  </Button>
+                ) : (
+                  <Button
+                    className="!text-secondary"
+                    onClick={() => navigate("/login")}
+                  >
+                    {"Login"}
+                  </Button>
+                )}
+                <ShoppingCartOutlinedIcon
+                  className="!text-secondary cursor-pointer"
+                  onClick={() => actions.modal.openCartDrawer()}
+                />
+                <FavoriteBorderIcon
+                  className="!text-secondary cursor-pointer"
+                  onClick={() => {
+                    actions.modal.openLikeDrawer();
+                  }}
+                />
+                <SearchOutlinedIcon
+                  className="!text-secondary cursor-pointer"
+                  onClick={() => navigate("/products")}
+                />
+              </div>
+              {/* <LoginIcon className="text-secondary ml-[-0.5rem]" /> */}
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <nav>
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={DialogOpen.open}
+            onClose={() => actions.modal.closeMobileDrawer()}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </nav>
+        <LogoutModal />
+      </Box>
+      <LikeDrawer />
+      <CartDrawer />
+    </>
   );
 }
 

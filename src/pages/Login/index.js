@@ -2,8 +2,6 @@ import {
   Paper,
   Grid,
   Typography,
-  InputAdornment,
-  IconButton,
 } from "@mui/material";
 import LoginImg from "../../assets/image/LoginImg2.svg";
 import TextFields from "../../components/common/TextFields";

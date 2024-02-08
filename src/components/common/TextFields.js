@@ -8,13 +8,16 @@ export default function TextFields(props) {
 
   return (
     <TextField
+
       {...restProps}
       type={type}
+
       inputProps={{
         accept: accept,
         multiple: multiple, // Add this line
       }}
       InputProps={{
+
         endAdornment: endAdornment && (
           <InputAdornment position="end">
             <IconButton disableRipple onClick={action}>
@@ -22,6 +25,7 @@ export default function TextFields(props) {
             </IconButton>
           </InputAdornment>
         ),
+
       }}
     />
   );

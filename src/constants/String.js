@@ -2,7 +2,7 @@ export const STRING = {
   //LOGIN PAGE
   LOGIN_TITAL: "Welcome Back",
   LOGIN_DESC: "Enter your email and password to Sign in",
-  REGISTER_DESC: "Enter your PhonNo,Username and password to Sign up",
+  REGISTER_DESC: "Sign up with ",
   LOGIN_EMALI: "Email Address",
   LOGIN_PASSWORD: "Password",
   REGISTER_USERNAME: "Username",

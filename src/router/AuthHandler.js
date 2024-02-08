@@ -23,6 +23,10 @@ const AuthHandler = () => {
           "/otpverify",
           "/home",
           "/login",
+          "/productdetails",
+          "/products",
+          "/order",
+          "/profile",
         ]?.includes(pathname)
       ) {
         navigate("/login");

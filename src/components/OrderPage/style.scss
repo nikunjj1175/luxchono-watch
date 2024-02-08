@@ -1,0 +1,172 @@
+@import "../../constants/color";
+
+.order_div {
+    .MuiInputBase-root {
+        border-radius: 10px !important;
+        height: 45px;
+    }
+
+    .order_heading {
+        font-weight: 600;
+    }
+
+    .bag_icon {
+        font-size: 30px;
+    }
+
+    .oinfo_div {
+        .order_desc_heading {
+            font-weight: 600;
+        }
+
+        .order_img {
+            width: 100px;
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .order_name {
+            font-weight: 600;
+            font-size: 17px;
+
+        }
+
+        .order_price {
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .order_quantity {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .order_time {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+
+
+        .more_icon {
+            font-size: 30px;
+
+        }
+    }
+
+    .not_found_div {
+        .not_found_icon {
+            font-size: 35px !important;
+        }
+
+        .not_found_heading {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .not_found_link {
+            font-size: 16px;
+        }
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .order_div {
+
+        .paperboxshadow {
+            height: 9rem !important;
+        }
+
+        .order_heading {
+            font-size: 19px !important;
+        }
+
+        .bag_icon {
+            font-size: 22px !important;
+        }
+
+        .order_desc_heading {
+            font-size: 16px !important;
+        }
+
+
+        .not_found_div {
+            .not_found_icon {
+                font-size: 25px !important;
+            }
+
+            .not_found_heading {
+                font-size: 17px !important;
+            }
+
+            .not_found_link {
+                font-size: 13px !important;
+            }
+        }
+
+
+        .order_img {
+            width: 70px !important;
+            height: 90px !important;
+        }
+
+        .order_name {
+            font-size: 17px !important;
+        }
+
+        .order_price {
+            font-size: 15px !important;
+        }
+
+        .order_quantity {
+            font-size: 14px !important;
+        }
+
+        .order_time {
+            font-size: 13px !important;
+        }
+
+        .more_icon {
+            font-size: 25px !important;
+
+        }
+    }
+
+
+}
+
+
+
+@media (max-width: 450px) {
+
+    .order_div {
+
+        .order_img {
+            width: 70px !important;
+            height: 90px !important;
+        }
+
+        .order_name {
+            font-size: 17px !important;
+        }
+
+        .order_price {
+            font-size: 15px !important;
+        }
+
+        .order_quantity {
+            font-size: 14px !important;
+        }
+
+        .order_time {
+            font-size: 13px !important;
+        }
+
+        .more_icon {
+            font-size: 25px !important;
+
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import "../../constants/color";
+
+.active_button {
+    border-bottom: 1px solid $secondary_light;
+    border-radius: 0px;
+}
+
+.active_button_mobile {
+    border-bottom: 1px solid $primary;
+    border-radius: 0px;
+}

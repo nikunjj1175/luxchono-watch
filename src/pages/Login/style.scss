@@ -7,13 +7,11 @@
 }
 
 .MuiFormHelperText-root {
-    font-weight: 800 !important;
-    color: #D32F2F !important;
+   
+    color: $error !important;
+    font-weight: 600 !important;
 }
 
-.MuiFormHelperText-root {
-    font-weight: 800 !important;
-}
 
 .logincontainer {
     background-image: url("../../assets/image/loginbackground1.svg"), url("../../assets/image/loginbackground2.svg");
@@ -56,6 +54,7 @@
     .logincontainer {
         background-image: none !important;
         width: 100% !important;
+
         .loginpepar {
             width: 100% !important;
             height: 100vh;
@@ -63,6 +62,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 0rem !important;
+
             .LoginImg {
                 display: none;
             }
