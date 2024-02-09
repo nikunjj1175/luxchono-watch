@@ -10,11 +10,24 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import HomeIcon from '@mui/icons-material/Home';
 import AddAddressDrawer from '../AddAddressDrawer';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DeleteAddressModal from '../DeleteAddressModal';
-function AddressDrawer() {
+import { useGetAddressQuery } from '../../../api/Address';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import Loader from '../Loader';
+import NotListedLocationOutlinedIcon from '@mui/icons-material/NotListedLocationOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
 
     const DialogOpen = useSelector((state) => state.modal.Address);
+
+    const { data: AddressApiData, isFetching: AddressFetching } = useGetAddressQuery({}, { skip: !DialogOpen.open });
+
+    const [addressData, setAddressData] = useState([]);
+
+    useEffect(() => {
+        setAddressData(AddressApiData?.data)
+    }, [AddressApiData])
 
     const navigate = useNavigate()
     const onCancel = () => {
@@ -22,6 +35,12 @@ function AddressDrawer() {
     }
 
     const [selectedAddress, setSelectedAddress] = useState(null);
+
+    useEffect(() => {
+        showCheckBox &&
+            setSelectedDeliveryAddress(selectedAddress)
+    }, [selectedAddress])
+
 
     const AddressCheckboxChange = (event) => {
         setSelectedAddress(event.target.name);
@@ -68,59 +87,87 @@ function AddressDrawer() {
                     </div>
                     {/* ---------------- header ----------------- */}
 
-                    <div className='main_address_div' style={{ overflow: "auto", paddingBottom: "6rem" }}>
-                        <div className='p-[0.5rem]'>
-                            <Buttons onClick={() => actions.modal.openAddAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='add_icon' />} text={"Add New Address"} variant={'outlined'} className={"add_address_btn"} />
+
+                    {AddressFetching ? (
+                        <div className='flex justify-center items-center h-[90vh]'>
+                            <Loader height={"50"} width={"50"} />
                         </div>
 
-                        <div className='flex flex-col gap-[4px] justify-center paperboxshadow  m-[1rem] p-[1rem]  address_box' >
-                            <div className='flex justify-between items-center' >
+                    ) :
+                        (
+
+                            <div className='main_address_div' style={{ overflow: "auto", paddingBottom: "6rem" }}>
+
+                                <div className='p-[0.5rem]'>
+                                    <Buttons onClick={() => actions.modal.openAddAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='add_icon' />} text={"Add New Address"} variant={'outlined'} className={"add_address_btn"} />
+                                </div>
 
 
-                                <div className='flex gap-[5px] items-center' >
+                                {addressData?.length ? (addressData?.map((address, index) => {
+                                    return (
+                                        <>
+                                            <div className='flex flex-col gap-[4px] justify-center paperboxshadow  m-[1rem] p-[1rem]  address_box cursor-pointer' >
+                                                <div className='flex justify-between items-center' >
+                                                    <div className='flex gap-[5px] items-center' >
+                                                        <div>
+                                                            {address?.addressType === "Home" ? <HomeIcon /> : <HomeRepairServiceIcon />}
+                                                        </div>
+                                                        <div>
+                                                            <span className='address_type'>
+                                                                {address?.addressType === "Home" ? "Home" : "Office"}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='add_check_box flex justify-center text-center  items-center'>
+                                                        <Checkbox disableRipple checked={selectedAddress === address?._id} name={address?._id} onChange={AddressCheckboxChange} />
+                                                    </div>
+
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <span className='text-main address_name'>{address?.fullName}</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <span className='address_line'>
+                                                            <span>{`${address?.address} , ${address?.city} , ${address?.state} - `} <span style={{ fontWeight: "600" }}>{`${395008}`}</span>
+                                                            </span>
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className='flex justify-between items-center'>
+                                                    <span className='address_phone'>{`${address?.phoneNo}`}</span>
+
+                                                    <div className='flex items-center gap-[5px]'>
+                                                        <div onClick={() => actions.modal.openAddAddressDrawer(address)} >
+                                                            <EditOutlinedIcon className='text-main cursor-pointer delete_icon' />
+                                                        </div>
+                                                        <div onClick={() => actions.modal.openDeleteAddressDrawer(address)}>
+                                                            <DeleteOutlineOutlinedIcon className='text-red mr-[0.5rem] cursor-pointer delete_icon' />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </>
+                                    )
+                                })) : (<div className='flex gap-[5[x]] flex-col items-center justify-center h-[65vh] p-[1rem] text-center w-[100%]'>
                                     <div>
-                                        <HomeIcon />
+                                        <NotListedLocationOutlinedIcon className='text-main not_add_icon' />
                                     </div>
                                     <div>
-                                        <span className='address_type'>{"Home"}</span>
+                                        <span className='not_add_dec'>{"Delivery address not available , Please add"}</span>
                                     </div>
 
-                                </div>
+                                </div>)}
 
-                                <div className='add_check_box flex justify-center text-center  items-center'>
-                                    <Checkbox disableRipple checked={selectedAddress === '1'} name={'1'} onChange={AddressCheckboxChange} />
-                                </div>
+                            </div>)
 
-                            </div>
-                            <div>
-                                <div>
-                                    <span className='text-main address_name'>{"Het"}</span>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <span className='address_line'>{"1 ruplai sco hirabaug varacha read suart  1 ruplai sco hirabaug varacha read suart  "}</span>
-                                </div>
+                    }
 
-                            </div>
-                            <div className='flex justify-between items-center'>
-                                <span className='address_phone'>{"7678866666"}</span>
-                                <div onClick={() => actions.modal.openDeleteAddressDrawer()}>
-                                    <DeleteOutlineOutlinedIcon className='text-red mr-[0.5rem] cursor-pointer delete_icon' />
-                                </div>
-                            </div>
-                        </div>
-                        {/* address are not available then show this div */}
-                        {/* <div className='flex gap-[5[x]] flex-col items-center justify-center h-[65vh] p-[1rem] text-center w-[100%]'>
-                            <div>
-                                <NotListedLocationOutlinedIcon className='text-main not_add_icon' />
-                            </div>
-                            <div>
-                                <span className='not_add_dec'>{"Delivery address not available , Please add"}</span>
-                            </div>
-
-                        </div> */}
-                    </div>
 
 
                     {/* ----------------  footer ----------------- */}
@@ -128,7 +175,7 @@ function AddressDrawer() {
                     <div className="address_drawer_footer">
 
                         <div className='flex gap-[10px] justify-end'>
-                            <Buttons onClick={onCancel} type={'submit'} text={"Close"} variant={'outlined'} className={'address_close_btn'} />
+                            <Buttons onClick={onCancel} type={'submit'} text={"Done"} variant={'outlined'} className={'address_close_btn'} />
                         </div>
                     </div>
                     {/* ----------------  footer ----------------- */}

@@ -7,3 +7,5 @@ export const prepareHeaders = (headers) => {
     return headers;
 };
 
+export const  TOKEN  = localStorage.getItem('lw-token');
+

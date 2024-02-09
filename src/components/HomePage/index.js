@@ -18,6 +18,7 @@ import { actions } from "../../redux/store";
 import OrderConformModal from "../common/OrderConformModal";
 import { useGetLikeProductQuery, useGetProductQuery } from "../../api/Product";
 import { useGetAllBrandApiQuery } from "../../api/Brand";
+import LoginAlertModal from "../common/LoginAlertModal";
 
 export default function HomePage() {
   // call product api
@@ -29,7 +30,6 @@ export default function HomePage() {
   const { data: LikeProductApiData, isFetching: likeProductFetching } = useGetLikeProductQuery();
 
   const { data: brandApiData, isFetching: brandFetching } = useGetAllBrandApiQuery();
-
 
 
   const [popularProductData, setPopularProductData] = useState([]);
@@ -85,9 +85,14 @@ export default function HomePage() {
     navigate("/products")
   }
 
+  const open = () => {
+    console.log(window)
+  }
+
+
   return (
     <>
-      <div style={{ marginTop: "4rem" }}>
+      <div style={{ marginTop: "4rem" }} onClick={open}>
         <Carousel
           infiniteLoop={true}
           showThumbs={false}
@@ -235,6 +240,7 @@ export default function HomePage() {
       </div>
 
       <OrderConformModal />
+      <LoginAlertModal />
 
 
     </>

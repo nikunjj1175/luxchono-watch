@@ -19,7 +19,8 @@ module.exports = {
         darkbg: "#1b120d",
         lighttext: "#A9A9A9",
         yellow: "#ffcd3c",
-        boxbac:"#F2F2F2"
+        boxbac:"#F2F2F2",
+        lihgtmain : "#F9F4F1"
 
       }
     },

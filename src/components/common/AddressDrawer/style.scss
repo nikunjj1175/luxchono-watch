@@ -58,21 +58,22 @@
         font-size: 16px;
     }
 
-    .not_add_icon{
+    .not_add_icon {
         font-size: 50px;
     }
-    .not_add_dec{
+
+    .not_add_dec {
         font-weight: 600;
         font-size: 18px;
     }
 
-    .add_check_box{
-        .MuiSvgIcon-root{
+    .add_check_box {
+        .MuiSvgIcon-root {
             font-size: 20px !important;
         }
     }
-    
-    .delete_icon{
+
+    .delete_icon {
         font-size: 23px !important;
     }
 }
@@ -131,26 +132,34 @@
         font-size: 16px !important;
     }
 
-    .not_add_icon{
+    .not_add_icon {
         font-size: 38px !important;
     }
 
-    .not_add_dec{
+    .not_add_dec {
         font-size: 13px !important;
     }
+
+    .main_address_div {
+        .delete_icon {
+            font-size: 19px !important;
+
+        }
+    }
+
 }
 
 @media (max-width: 450px) {
     .addres_drawer_div {
-        width: 240px !important;
+        width: 275px !important;
     }
 
     .address_drawer_header_wrapper {
-        width: 240px !important;
+        width: 275px !important;
     }
 
     .address_drawer_footer {
-        width: 240px !important;
+        width: 275px !important;
     }
 
     .addres_title {

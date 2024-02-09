@@ -12,7 +12,6 @@ import { useGetAllCategoryQuery } from '../../../api/Category';
 import Loader from '../Loader';
 
 //silder
-
 function ProductFilterDrawer(
     { filterStartPrice,
         filterEndPrice,
@@ -28,19 +27,15 @@ function ProductFilterDrawer(
         actions.modal.closeProductFilterDrawer();
     }
 
-
     const { data: categoryApiData, isFetching: categoryFetching } = useGetAllCategoryQuery({}, { skip: !DialogOpen.open })
     const { data: brandApiData, isFetching: brandFetching } = useGetAllBrandApiQuery({}, { skip: !DialogOpen.open });
 
-
     const [brandData, setBrandData] = useState([])
-
     const [categoryData, setCategoryData] = useState([])
 
     useEffect(() => {
         setBrandData(brandApiData?.data)
         setCategoryData(categoryApiData?.data)
-
     }, [brandApiData, categoryApiData])
 
 
@@ -83,8 +78,6 @@ function ProductFilterDrawer(
 
     const [priceRange, setpriceRange] = useState(["", ""]);
 
-    console.log(priceRange, "priceRange")
-
     const minDistance = 10;
 
     const handleChangePriceRange = (event, newValue, activeThumb) => {
@@ -123,7 +116,7 @@ function ProductFilterDrawer(
     return (
         <>
             <Drawer
-                className='like_drawer'
+                className='filter_drawer'
                 anchor="right"
                 open={DialogOpen.open}
                 onClose={onCancel}

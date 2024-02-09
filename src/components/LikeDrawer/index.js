@@ -1,16 +1,12 @@
 import { Drawer } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
-import Buttons from '../common/Buttons';
 import { useSelector } from 'react-redux';
 import { actions } from '../../redux/store';
 import './style.scss';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import demop from "../../assets/image/demop.png";
 import StarIcon from '@mui/icons-material/Star';
-import { useGetLikeProductQuery, useGetWishlistProductQuery, useLikeProductMutation } from '../../api/Product';
+import { useGetWishlistProductQuery, useLikeProductMutation } from '../../api/Product';
 import { useEffect, useState } from 'react';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Loader from '../common/Loader';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,15 +17,12 @@ function LikeDrawer() {
 
     const navigate = useNavigate();
 
-
     const [LikeProduct, { isLoading }] = useLikeProductMutation();
 
     const [likeProductsData, setLikeProductsData] = useState([]);
 
     useEffect(() => {
-
         setLikeProductsData(LikeProductsData?.data)
-
     }, [LikeProductsData])
 
 
@@ -60,6 +53,8 @@ function LikeDrawer() {
         navigate("/home")
         onCancel()
     }
+
+    console.log(likeProductsData, "likeProductsData")
 
     return (
         <>

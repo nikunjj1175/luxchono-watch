@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./style.scss"
 import { Grid } from '@mui/material'
 import TextFields from '../common/TextFields'
@@ -10,6 +10,8 @@ import { actions } from '../../redux/store';
 import LogoutModal from '../common/LogoutModal';
 
 export default function ProfilePage() {
+
+    const [checkbox] = useState(false);
     return (
         <>
             <div className='mt-[5rem] '>
@@ -108,7 +110,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
-            <AddressDrawer />
+            <AddressDrawer showCheckBox={checkbox} />
             <LogoutModal />
         </>
 

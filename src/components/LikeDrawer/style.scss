@@ -12,9 +12,9 @@
 
 .like_products {
     margin-top: 4rem;
-    
-    .paperboxshadow{
-        min-height:  9rem !important;
+
+    .paperboxshadow {
+        min-height: 9rem !important;
     }
 
     .like_img {
@@ -45,13 +45,9 @@
 
     }
 
-    .paperboxshadow{
-        min-height:  9rem !important;
-    }
-
     .like_products {
         .paperboxshadow {
-            
+            min-height: 9rem !important;
 
             .like_icon {
                 font-size: 18px;
@@ -102,15 +98,12 @@
 @media (max-width: 450px) {
 
     .drawer_header_wrapper {
-        width: 240px;
+        width: 270px !important;
 
     }
 
-   
-   
-
     .like_drawer_div {
-        width: 240px !important;
+        width: 270px !important;
     }
 
 

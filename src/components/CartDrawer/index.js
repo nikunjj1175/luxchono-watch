@@ -4,7 +4,6 @@ import Buttons from '../common/Buttons';
 import { useSelector } from 'react-redux';
 import { actions } from '../../redux/store';
 import './style.scss';
-import demop from "../../assets/image/demop.png";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveProductDrawer from '../common/RemoveProductModal/index';
@@ -20,21 +19,28 @@ import Loader from '../common/Loader';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import { useMakeOrderMutation, useMakeOrderQuery } from '../../api/Order';
 import { toast } from 'react-toastify';
+import { useGetSingleAddressQuery } from '../../api/Address';
 
 function CartDrawer() {
     const DialogOpen = useSelector((state) => state.modal.Cart);
-
     const { data: CartProductApiData, isFetching: CartProductFetching } = useGetCartProductQuery({}, { skip: !DialogOpen?.open });
     const [MakeOrder, { isLoading: MakeOrderFetching }] = useMakeOrderMutation();
-
+    const [selectedDeliveryAddress, setSelectedDeliveryAddress] = useState();
+    const { data: SingleApiAddress, isFetching: GetAddressFetching, refetch: getSingleReftch } = useGetSingleAddressQuery(selectedDeliveryAddress, { skip: !selectedDeliveryAddress });
     const [makeOrderData, setMakeOrderData] = useState([]);
     const [cartProductData, setCartProductData] = useState([]);
     const [cartTotalSummary, setCartTotalSummary] = useState()
     const [orderSummaryData, setOrderSummaryData] = useState([]);
-    const [orderSummaryProduct, setOrderSummaryProduct] = useState([])
-        ; const navigate = useNavigate()
+    const [orderSummaryProduct, setOrderSummaryProduct] = useState([]);
+    const [selectedSingleAddress, setSelectedSingleAddress] = useState()
 
-    console.log(orderSummaryData, "orderSummaryData")
+    const [checkbox] = useState(true);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setSelectedSingleAddress(SingleApiAddress?.data)
+    }, [SingleApiAddress])
 
 
     useEffect(() => {
@@ -53,6 +59,9 @@ function CartDrawer() {
 
         setMakeOrderData(makesOrders)
     }, [cartProductData, CartProductApiData])
+
+    console.log(cartProductData, "cartProductData")
+
 
 
 
@@ -117,6 +126,7 @@ function CartDrawer() {
 
 
                 <div className='cart_drawer_div' style={{ width: "400px" }}>
+
                     {/* ---------------- header ----------------- */}
                     <div className="cart_drawer_header_wrapper">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
@@ -218,7 +228,7 @@ function CartDrawer() {
 
 
                                     {/*-------------------address are available then show this div------------------------ */}
-                                    <div className='address_div paperboxshadow h-[9rem] mt-[1rem] p-[0.7rem]' >
+                                    {selectedSingleAddress && <div className='address_div paperboxshadow  mt-[1rem] p-[0.7rem]' >
                                         <div className='flex items-center justify-between '>
                                             <span className='addres_heading'>{"Shipping Address"}</span>
                                             <div className='change_btn' onClick={() => actions.modal.openAddressDrawer()} >
@@ -227,19 +237,20 @@ function CartDrawer() {
                                         </div>
 
                                         <div className='flex flex-col gap-[2px] mt-[0.3rem]' >
-                                            <span className='text-main add_name' >{"het"}</span>
-                                            <span className='text-black add_address'>{"1 rupli scocitey"}</span>
-                                            <span className='text-black add_phon'>{"7880529184"}</span>
+                                            <span className='text-main add_name' >{selectedSingleAddress?.fullName}</span>
+                                            <span>{`${selectedSingleAddress?.address} , ${selectedSingleAddress?.city} , ${selectedSingleAddress?.state} - `} <span style={{ fontWeight: "600" }}>{`${395008}`}</span>
+                                            </span>
+                                            <span className='text-black add_phon'>{selectedSingleAddress?.phoneNo}</span>
                                         </div>
-                                    </div>
+                                    </div>}
                                     {/*-------------------address are available then this div------------------------ */}
 
 
 
-                                    {/*-------------------address not are available then show this div------------------------ */}
-                                    <div >
-                                        <Buttons onClick={() => actions.modal.openAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='cart_add_icon' />} text={"Add New Address"} variant={'outlined'} className={"cart_add_address_btn"} />
-                                    </div>
+                                    {/*-------------------ad dress not are available then show this div------------------------ */}
+                                    {!selectedSingleAddress && <div >
+                                        <Buttons onClick={() => actions.modal.openAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='cart_add_icon' />} text={"Select Delivery Address"} variant={'outlined'} className={"cart_add_address_btn"} />
+                                    </div>}
                                     {/*-------------------address not are available then show this div------------------------ */}
 
 
@@ -357,7 +368,7 @@ function CartDrawer() {
                             {/* ----------------  footer ----------------- */}
 
 
-                        </>) : (<div className='flex flex-col gap-[5px] items-center  justify-center h-[98vh]'>
+                        </>) : (!CartProductFetching && <div className='flex flex-col gap-[5px] items-center  justify-center h-[98vh]'>
                             <div>
                                 <ProductionQuantityLimitsIcon className='text-main noitem_icon' />
                             </div>
@@ -379,9 +390,7 @@ function CartDrawer() {
             </Drawer>
             <RemoveProductDrawer />
             <AddQuantityMoadl />
-            <AddressDrawer />
-
-
+            <AddressDrawer setSelectedDeliveryAddress={setSelectedDeliveryAddress} showCheckBox={checkbox} />
 
         </>
     );

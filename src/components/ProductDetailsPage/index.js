@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import { useGetLikeProductQuery, useGetProductQuery, useLikeProductMutation } from '../../api/Product';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CartDrawer from '../CartDrawer';
+import LoginAlertModal from '../common/LoginAlertModal';
 
 
 const ProductDetails = () => {
@@ -29,7 +30,9 @@ const ProductDetails = () => {
 
     const navigate = useNavigate();
 
-    console.log(productId, "productIdproductIdproductId")
+
+
+    const TOKEN = localStorage.getItem('lw-token');
 
     const [AddToCart, { isLoading: AddToCartFetching }] = useAddToCartMutation();
 
@@ -60,39 +63,51 @@ const ProductDetails = () => {
     }, [CartProductApiData, LikeProductApiData, SimilarProductApiData])
 
     const likeProducts = async () => {
-        setShowLikeButton(!showLikeButton)
-        try {
-            const body = {
-                pid: productId
+
+        if (TOKEN) {
+            setShowLikeButton(!showLikeButton)
+            try {
+                const body = {
+                    pid: productId
+                }
+                const response = await LikeProduct(body);
             }
-            const response = await LikeProduct(body);
+            catch (error) {
+                console.log(error)
+                setShowLikeButton(showLikeButton)
+            }
+        } else {
+            actions.modal.openLoginAlertModal()
         }
-        catch (error) {
-            console.log(error)
-            setShowLikeButton(showLikeButton)
-        }
+
     }
 
     const handleAddToCart = async () => {
 
-        const body = {
-            pid: productId
+        if (TOKEN) {
+            const body = {
+                pid: productId
+            }
+
+            actions.loder.setLoading(true);
+            try {
+                const response = await AddToCart(body);
+                const { statusCode, message, } = response?.data;
+                if (statusCode === 200) {
+                    toast.success(message);
+                } else {
+                    toast.error(message);
+                }
+            }
+            catch (error) {
+                console.log(error)
+            }
+            actions.loder.setLoading(false);
+        } else {
+            actions.modal.openLoginAlertModal()
         }
 
-        actions.loder.setLoading(true);
-        try {
-            const response = await AddToCart(body);
-            const { statusCode, message, } = response?.data;
-            if (statusCode === 200) {
-                toast.success(message);
-            } else {
-                toast.error(message);
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
-        actions.loder.setLoading(false);
+
     }
 
     console.log(productId, "productId")
@@ -156,12 +171,12 @@ const ProductDetails = () => {
                                     className={"add_cart_btn"}
                                 /> */}
 
-                                <div className='flex' onClick={() => actions.modal.openCartDrawer()} >
+                                {TOKEN && <div className='flex' onClick={() => actions.modal.openCartDrawer()} >
                                     <ShoppingCartOutlinedIcon className='text-main add_cart_icon' />
                                     {<div className='bg-main rounded-[50%] items-center justify-center flex w-[20px] h-[20px]' style={{ marginLeft: "-12px", marginTop: "-5px" }}>
                                         <span className='text-[13px] text-white font-medium '>{cartProductDataLength}</span>
                                     </div>}
-                                </div>
+                                </div>}
 
                             </div>
                             <div className='mt-[1rem] flex flex-col gap-[-3px]'>
@@ -264,6 +279,7 @@ const ProductDetails = () => {
 
             </div>
             <CartDrawer />
+            <LoginAlertModal />
         </>
 
 

@@ -1,7 +1,5 @@
 @import "../../../constants/color";
 
-
-
 .add_address_drawer_header_wrapper {
     border-bottom: 1px solid $light_text;
     height: 60px;
@@ -43,7 +41,6 @@
         }
     }
 
-   
     .add_address_btn {
         font-weight: 600;
         height: 2.5rem;
@@ -55,12 +52,12 @@
         cursor: pointer;
     }
 
-    .select_error{
+    .select_error {
         color: $error !important;
         font-weight: 600;
         font-size: 0.75rem;
         margin-left: 1rem;
-    
+
     }
 }
 
@@ -141,18 +138,15 @@
 
 @media (max-width: 450px) {
     .add_addres_drawer_div {
-        width: 230px !important;
+        width: 270px !important;
     }
 
     .add_address_drawer_header_wrapper {
-        width: 230px !important;
+        width: 270px !important;
     }
 
     .add_address_drawer_footer {
-        width: 230px !important;
+        width: 270px !important;
     }
-
-
-
 
 }

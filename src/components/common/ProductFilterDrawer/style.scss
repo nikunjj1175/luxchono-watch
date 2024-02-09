@@ -1,5 +1,6 @@
 @import "../../../constants/color";
 
+
 .filter_drawer_header {
     border-bottom: 1px solid $light_text;
     height: 60px;
@@ -183,24 +184,28 @@
 
 @media (max-width: 450px) {
 
-    .filter_drawer_header {
-        width: 240px;
-    }
+    
 
-    .filter_drawer_div {
-        width: 240px !important;
-    }
+        .filter_drawer_header {
+            width: 240px;
+        }
+    
+        .filter_drawer_div {
+            width: 240px !important;
+        }
+    
+        .filter_drawer_footer {
+            width: 240px;
+        }
+    
+        .reset_btn {
+            font-size: 14px;
+        }
+    
+        .apply_btn {
+            font-size: 14px;
+        }
+    
 
-    .filter_drawer_footer {
-        width: 240px;
-    }
-
-    .reset_btn {
-        font-size: 14px;
-    }
-
-    .apply_btn {
-        font-size: 14px;
-    }
 
 }

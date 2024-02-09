@@ -1,24 +1,50 @@
-import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
+import React, { useState, useEffect } from 'react'
 import DialogContent from '@mui/material/DialogContent';
 import { useSelector } from 'react-redux';
 import "./style.scss"
 import { actions } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../Buttons';
+import { useDeleteAddressMutation } from '../../../api/Address';
+import { toast } from 'react-toastify';
 
 export default function DeleteAddressModal() {
 
     const DialogOpen = useSelector((state) => state.modal.DeleteAddress);
     const navigate = useNavigate()
+
+    const [addressId, setAddressId] = useState();
+
+    const [deleteAddress, { isLoading: AddressFetching }] = useDeleteAddressMutation();
+
+    useEffect(() => {
+        setAddressId(DialogOpen?.data?._id)
+    }, [DialogOpen])
+
+    console.log(addressId, "addressId")
+
+
     const onCancel = () => {
         actions.modal.closeDeleteAddressDrawer();
     }
 
-    const logout = () => {
-        navigate('/home')
-        onCancel();
-        localStorage.removeItem("lw-token")
+    const handleDeleteAddress = async () => {
+        try {
+            actions.loder.setLoading(true);
+            const response = await deleteAddress(addressId);
+            const { statusCode, message, } = response?.data;
+            if (statusCode === 200) {
+                toast.success(message);
+                onCancel();
+            } else {
+                toast.error(message);
+            }
+            actions.loder.setLoading(false);
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
 
@@ -50,7 +76,7 @@ export default function DeleteAddressModal() {
                                 className={"delete_cancel_btn"}
                             />
                             <Buttons
-                                onClick={logout}
+                                onClick={handleDeleteAddress}
                                 type={"submit"}
                                 text={"Yes"}
                                 variant={"contained"}
