@@ -31,8 +31,10 @@ const drawerWidth = 240;
 
 function DrawerAppBar(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+
   const DialogOpen = useSelector((state) => state.modal.MobileDrawer);
+
+  console.log(DialogOpen, "DialogOpen")
 
   const token = localStorage.getItem("lw-token")
 
@@ -41,11 +43,6 @@ function DrawerAppBar(props) {
   const location = useLocation();
   const { pathname } = location;
 
-  console.log(pathname, "pathname")
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>

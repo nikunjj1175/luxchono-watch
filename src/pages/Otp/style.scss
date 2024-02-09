@@ -6,14 +6,15 @@
     box-sizing: border-box;
 }
 
-
 .otpcontainer {
     background-image: url("../../assets/image/loginbackground1.svg"), url("../../assets/image/loginbackground2.svg");
     background-repeat: no-repeat, no-repeat;
     background-position: top right, bottom left;
+
     .css-tccdxk {
         gap: 25px !important;
     }
+
     .MuiInputBase-root {
         border-radius: 12px !important;
         height: 70px;
@@ -37,7 +38,6 @@
         width: 100% !important;
     }
 }
-
 
 @media (max-width: 1000px) {
     .otpcontainer {

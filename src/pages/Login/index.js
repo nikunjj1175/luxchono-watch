@@ -18,6 +18,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { STRING } from "../../constants/String";
 import { useLoginMutation } from "../../api/Login";
+import { actions } from "../../redux/store";
 
 export default function Login() {
   const [Login, { isLoading }] = useLoginMutation();
@@ -45,6 +46,7 @@ export default function Login() {
         console.log(response, "responseee");
         const { success, message, token, data } = response?.data;
         if (success) {
+          actions.modal.closeMobileDrawer()
           toast.success(message);
           await localStorage.setItem("lw-token", token);
           navigate("/home");

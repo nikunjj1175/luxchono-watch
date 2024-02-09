@@ -7,7 +7,7 @@ import { actions } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../Buttons';
 
-export default function LogoutModal() {
+export default function LogoutModal({ onCloseMobileDrawer }) {
 
   const DialogOpen = useSelector((state) => state.modal.Logout);
   const navigate = useNavigate()
@@ -16,6 +16,7 @@ export default function LogoutModal() {
   }
 
   const logout = () => {
+    actions.modal.closeMobileDrawer()
     navigate('/home')
     onCancel();
     localStorage.removeItem("lw-token")
