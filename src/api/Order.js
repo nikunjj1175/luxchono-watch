@@ -20,8 +20,18 @@ export const OrderApi = createApi({
             },
             invalidatesTags: ['Order'],
         }),
+        PaymentOrder: builder.mutation({
+            query: (body) => {
+                return {
+                    url: "/order/payment-order",
+                    method: "post",
+                    body,
+                }
+            },
+            invalidatesTags: ['Order'],
+        }),
 
     }),
 });
 
-export const { useMakeOrderMutation } = OrderApi;
+export const { useMakeOrderMutation,usePaymentOrderMutation } = OrderApi;
