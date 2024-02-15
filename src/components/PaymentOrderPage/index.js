@@ -35,7 +35,6 @@ export default function PaymentOrderPage() {
 
       <div className='paymentOrder'>
         <div className='flex flex-col h-[60vh] justify-center  items-center gap-[5px]' >
-
           {!OrderFetching &&
             <>
               <div>

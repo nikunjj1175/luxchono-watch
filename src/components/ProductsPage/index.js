@@ -11,7 +11,7 @@ import Buttons from '../common/Buttons';
 import SearchIcon from '@mui/icons-material/Search';
 import { useGetLikeProductQuery, useGetProductQuery } from '../../api/Product';
 import Loader from '../common/Loader';
-
+import LoginAlertModal from '../common/LoginAlertModal';
 
 export default function ProductsPage() {
     const [input, setinput] = useState('');
@@ -69,7 +69,6 @@ export default function ProductsPage() {
                 </div>
 
                 <div className='products_div m-[1rem]'>
-
                     {ProductFetching && likeProductFetching ? (
                         <div className='flex justify-center items-center h-[60vh]' style={{ visibility: "hidden" }} >
                             <Loader />
@@ -94,7 +93,6 @@ export default function ProductsPage() {
                                 <span className='text-black  not_found'>No data Found</span>
                             </div>
                         </div>}
-
                     </div>))}
                 </div>
                 {/* data not found then show this div */}
@@ -108,8 +106,9 @@ export default function ProductsPage() {
                 setFilterBeand={setFilterBeand}
                 filterBeand={filterBeand}
                 setFilterCategory={setFilterCategory}
-                filterCategory={filterCategory}
-            />
+                filterCategory={filterCategory} />
+
+            <LoginAlertModal />
         </>
     )
 }

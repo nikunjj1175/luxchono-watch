@@ -61,6 +61,7 @@ export default function ProductBox({ productItem, LikeProductApiData }) {
         setShowLikeButton(showLikeButton)
       }
     } else {
+      console.log("--------------")
       actions.modal.openLoginAlertModal()
 
     }
@@ -106,6 +107,7 @@ export default function ProductBox({ productItem, LikeProductApiData }) {
         </div>
       </div>
 
+     
 
     </>
 
