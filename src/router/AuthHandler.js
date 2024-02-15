@@ -27,8 +27,8 @@ const AuthHandler = () => {
           "/products",
           "/order",
           "/profile",
-
-        ]?.includes(pathname) && pathname.includes("/paymentorder")
+          "/paymentorder"
+        ]?.includes(pathname)
       ) {
         navigate("/login");
       }

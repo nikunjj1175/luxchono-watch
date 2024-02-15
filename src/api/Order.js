@@ -30,8 +30,16 @@ export const OrderApi = createApi({
             },
             invalidatesTags: ['Order'],
         }),
+        GetOrder: builder.query({
+            query: (orderId) => {
+                return {
+                    url: `/order/get-order?orderId=${orderId}`,
+                };
+            },
+            providesTags: ['Order'],
+        }),
 
     }),
 });
 
-export const { useMakeOrderMutation,usePaymentOrderMutation } = OrderApi;
+export const { useMakeOrderMutation, usePaymentOrderMutation, useGetOrderQuery } = OrderApi;
