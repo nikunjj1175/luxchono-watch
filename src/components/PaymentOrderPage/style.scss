@@ -1,0 +1,58 @@
+@import "../../constants/color";
+
+.paymentOrder {
+   
+
+
+    .conform_icon {
+        font-size: 100px;
+    }
+
+    .conform_heading {
+        font-size: 23px;
+        font-weight: 600;
+    }
+
+    .conform_dec {
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    .conform_date {
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+    .conform_link {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    @media (max-width: 700px) {
+        .conform_icon {
+            font-size: 50px !important;
+        }
+
+        .conform_heading {
+            font-size: 20px !important;
+
+        }
+
+        .conform_dec {
+            font-size: 15px !important;
+
+        }
+
+        .conform_date {
+            font-size: 15px !important;
+
+        }
+
+        .conform_link {
+            font-size: 17px !important;
+
+        }
+    }
+
+}

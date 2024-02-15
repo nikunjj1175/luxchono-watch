@@ -6,7 +6,6 @@ import "./style.scss"
 import { actions } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../Buttons';
-
 import NotificationImportantOutlinedIcon from '@mui/icons-material/NotificationImportantOutlined';
 
 export default function LoginAlertModal() {
@@ -16,12 +15,10 @@ export default function LoginAlertModal() {
     const onCancel = () => {
         actions.modal.closeLoginAlertModal();
     }
-
     const goToLogin = () => {
         navigate("/login")
         onCancel()
     }
-
 
     return (
         <Dialog
@@ -39,8 +36,6 @@ export default function LoginAlertModal() {
                                 <div>
                                     <NotificationImportantOutlinedIcon className='text-main login_icon' />
                                 </div>
-
-
                                 <div>
                                     <span className='text-black login_alert_title mt-[0.2rem] text-start' style={{ fontSize: "22px", fontWeight: "600" }} >
                                         {"Please login now !"}

@@ -30,8 +30,6 @@ const ProductDetails = () => {
 
     const navigate = useNavigate();
 
-
-
     const TOKEN = localStorage.getItem('lw-token');
 
     const [AddToCart, { isLoading: AddToCartFetching }] = useAddToCartMutation();
@@ -170,8 +168,7 @@ const ProductDetails = () => {
                                     variant={"contained"}
                                     className={"add_cart_btn"}
                                 /> */}
-
-                                {TOKEN && <div className='flex' onClick={() => actions.modal.openCartDrawer()} >
+                                {TOKEN && <div className='flex cursor-pointer' onClick={() => actions.modal.openCartDrawer()} >
                                     <ShoppingCartOutlinedIcon className='text-main add_cart_icon' />
                                     {<div className='bg-main rounded-[50%] items-center justify-center flex w-[20px] h-[20px]' style={{ marginLeft: "-12px", marginTop: "-5px" }}>
                                         <span className='text-[13px] text-white font-medium '>{cartProductDataLength}</span>

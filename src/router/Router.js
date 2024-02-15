@@ -11,6 +11,7 @@ import ScrollToTop from "./ScrollToTop";
 import Products from "../pages/Products";
 import Profile from "../pages/Profile";
 import Order from "../pages/Order";
+import PaymentOrder from "../pages/PaymentOrder";
 
 export default function Router() {
   return (
@@ -28,6 +29,7 @@ export default function Router() {
           <Route path="/products" element={<Products />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/order" element={<Order />}></Route>
+          <Route path="/paymentorder/:id" element={<PaymentOrder />} ></Route>
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>
