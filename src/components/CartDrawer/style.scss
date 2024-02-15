@@ -64,6 +64,13 @@
         font-size: 23px !important;
     }
 
+    .address_error{
+        color: $error;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+
     .cart_add_address_btn {
         font-weight: 600;
         height: 2.5rem;
@@ -240,6 +247,10 @@
             font-size: 16px !important;
         }
 
+    }
+
+    .address_error{
+        font-size: 11px !important; 
     }
 
     .cart_add_address_btn {

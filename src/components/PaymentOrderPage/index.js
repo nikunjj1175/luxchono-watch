@@ -9,7 +9,6 @@ export default function PaymentOrderPage() {
 
   const goToHome = () => {
     navigate("/home")
-
   }
 
   return (

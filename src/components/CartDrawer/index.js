@@ -24,6 +24,7 @@ import {
 } from "../../api/Order";
 import { toast } from "react-toastify";
 import { useGetSingleAddressQuery } from "../../api/Address";
+import { escape } from "lodash";
 
 function CartDrawer() {
   const DialogOpen = useSelector((state) => state.modal.Cart);
@@ -44,6 +45,8 @@ function CartDrawer() {
   const [orderSummaryData, setOrderSummaryData] = useState([]);
   const [orderSummaryProduct, setOrderSummaryProduct] = useState([]);
   const [selectedSingleAddress, setSelectedSingleAddress] = useState();
+
+  const [showAddError, setShowAddError] = useState(false);
 
   const [paymentOrderData, setPaymentOrderData] = useState([]);
 
@@ -128,25 +131,31 @@ function CartDrawer() {
   const [activeStep, setActiveStep] = useState(0);
 
   const continuePayment = async () => {
-    try {
-      actions.loder.setLoading(true);
-      const response = await PaymentOrder(paymentOrderData);
-      const { statusCode, message, data } = response?.data;
-      if (statusCode === 200) {
-        toast.success(message);
-        var rzrp = new window.Razorpay(response.data.data);
-        rzrp.open();
-      } else {
-        toast.error(message);
+    if (!selectedSingleAddress?._id) {
+      setShowAddError(true)
+    } else {
+      try {
+        actions.loder.setLoading(true);
+        const response = await PaymentOrder(paymentOrderData);
+        const { statusCode, message, data } = response?.data;
+        if (statusCode === 200) {
+          toast.success(message);
+          var rzrp = new window.Razorpay(response.data.data);
+          rzrp.open();
+          onCancel();
+        } else {
+          toast.error(message);
+        }
+        actions.loder.setLoading(false);
+      } catch (error) {
+        console.log(error);
       }
-      actions.loder.setLoading(false);
-    } catch (error) {
-      console.log(error);
     }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setShowAddError(false)
   };
 
   //go to home
@@ -158,6 +167,7 @@ function CartDrawer() {
   //oncancel
   const onCancel = () => {
     actions.modal.closeCartDrawer();
+    setShowAddError(false)
   };
 
   return (
@@ -380,7 +390,7 @@ function CartDrawer() {
 
                     {/*-------------------ad dress not are available then show this div------------------------ */}
                     {!selectedSingleAddress && (
-                      <div>
+                      <div className="flex flex-col gap-[2px]">
                         <Buttons
                           onClick={() => actions.modal.openAddressDrawer()}
                           startIcon={
@@ -390,6 +400,11 @@ function CartDrawer() {
                           variant={"outlined"}
                           className={"cart_add_address_btn"}
                         />
+
+                        {showAddError && <div className="flex  justify-center">
+                          <span className="address_error">{"Please select your delivery address"}</span>
+                        </div>}
+
                       </div>
                     )}
                     {/*-------------------address not are available then show this div------------------------ */}
@@ -470,7 +485,7 @@ function CartDrawer() {
                         {activeStep === 0
                           ? `Sub Total (${cartTotalSummary?.cartProducts?.length} items)`
                           : activeStep === 1 &&
-                            `Sub Total (${orderSummaryData?.orderProducts?.length} items)`}
+                          `Sub Total (${orderSummaryData?.orderProducts?.length} items)`}
                       </span>
 
                       <>
@@ -485,12 +500,12 @@ function CartDrawer() {
                       >
                         {activeStep === 0
                           ? `${cartTotalSummary?.cartTotalAmount?.toLocaleString(
-                              "en-IN"
-                            )} ₹`
+                            "en-IN"
+                          )} ₹`
                           : activeStep === 1 &&
-                            `${orderSummaryData?.totalAmount?.toLocaleString(
-                              "en-IN"
-                            )} ₹`}
+                          `${orderSummaryData?.totalAmount?.toLocaleString(
+                            "en-IN"
+                          )} ₹`}
                       </span>
                     </div>
                     <div className="flex justify-between ">
@@ -506,12 +521,12 @@ function CartDrawer() {
                       >
                         {activeStep === 0
                           ? `${cartTotalSummary?.cartDiscountAmount?.toLocaleString(
-                              "en-IN"
-                            )} ₹`
+                            "en-IN"
+                          )} ₹`
                           : activeStep === 1 &&
-                            `${orderSummaryData?.discountAmount?.toLocaleString(
-                              "en-IN"
-                            )} ₹`}
+                          `${orderSummaryData?.discountAmount?.toLocaleString(
+                            "en-IN"
+                          )} ₹`}
                       </span>
                     </div>
                     <div className="flex justify-between ">
@@ -526,16 +541,14 @@ function CartDrawer() {
                         style={{ fontWeight: "600" }}
                       >
                         {activeStep === 0
-                          ? `${
-                              cartTotalSummary?.shippingCharge?.toLocaleString(
-                                "en-IN"
-                              ) || 0
-                            } ₹`
-                          : `${
-                              orderSummaryData?.shippingCharge?.toLocaleString(
-                                "en-IN"
-                              ) || 0
-                            } ₹`}
+                          ? `${cartTotalSummary?.shippingCharge?.toLocaleString(
+                            "en-IN"
+                          ) || 0
+                          } ₹`
+                          : `${orderSummaryData?.shippingCharge?.toLocaleString(
+                            "en-IN"
+                          ) || 0
+                          } ₹`}
                       </span>
                     </div>
                   </div>
@@ -552,11 +565,11 @@ function CartDrawer() {
                     >
                       {activeStep === 0
                         ? `${cartTotalSummary?.cartPaymentAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`
+                          "en-IN"
+                        )} ₹`
                         : `${orderSummaryData?.paymentAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`}
+                          "en-IN"
+                        )} ₹`}
                     </span>
                   </div>
                 </div>
