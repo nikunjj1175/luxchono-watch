@@ -1,19 +1,21 @@
 @import "../../constants/color";
 
 .paymentOrder {
-   
+
 
 
     .conform_icon {
         font-size: 100px;
     }
 
-    .order_idt{
-        font-size: 20px ;
+    .order_idt {
+        font-size: 20px;
         font-weight: 600;
     }
-    .order_id{
-        font-size: 20px ;
+
+    .order_idi {
+        font-size: 20px;
+        font-weight: 600;
     }
 
     .conform_heading {
@@ -32,8 +34,19 @@
     }
 
     .conform_link {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
+    }
+
+    .pdf_download {
+        background-color: $primary;
+        color: $white;
+        font-weight: 600;
+        border-radius: 5px;
+        padding: 0.5rem;
+        height: 2.4rem;
+        font-size: 16px;
+
     }
 
 
@@ -41,6 +54,17 @@
         .conform_icon {
             font-size: 50px !important;
         }
+
+        .order_idt {
+            font-size: 16px;
+
+        }
+
+        .order_idi {
+            font-size: 16px;
+
+        }
+
 
         .conform_heading {
             font-size: 20px !important;
@@ -59,6 +83,13 @@
 
         .conform_link {
             font-size: 17px !important;
+
+        }
+
+        .pdf_download {
+            padding: 0.4rem !important;
+            height: 2.2rem !important;
+            font-size: 14px !important;
 
         }
     }

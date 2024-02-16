@@ -9,7 +9,6 @@ import Buttons from '../Buttons';
 import WarningIcon from '@mui/icons-material/Warning';
 
 export default function CancelOrderModal() {
-
     const DialogOpen = useSelector((state) => state.modal.CancelOrder);
     const navigate = useNavigate()
     const onCancel = () => {
