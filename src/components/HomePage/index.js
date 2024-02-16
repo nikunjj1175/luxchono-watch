@@ -48,10 +48,10 @@ export default function HomePage() {
   const navigate = useNavigate();
   const images = [
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/Lunar_PRO_LTE_WEB_Banner_1440x.jpg?v=1704697574",
+      url: "https://www.boat-lifestyle.com/cdn/shop/files/LUNAR_Link_Banner_WEB_2_1440x.jpg?v=1707809481",
     },
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/IM_111_Banner_WEB_1440x.jpg?v=1705945963",
+      url: "https://www.boat-lifestyle.com/cdn/shop/files/Ultima_Select_Banner_WEB_1440x.jpg?v=1707460925",
     },
     {
       url: "https://www.boat-lifestyle.com/cdn/shop/files/161_Pro_Buds_Banner_WEB_1_1440x.jpg?v=1704959022",
