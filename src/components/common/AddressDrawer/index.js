@@ -97,12 +97,9 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                         (
 
                             <div className='main_address_div' style={{ overflow: "auto", paddingBottom: "6rem" }}>
-
                                 <div className='p-[0.5rem]'>
                                     <Buttons onClick={() => actions.modal.openAddAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='add_icon' />} text={"Add New Address"} variant={'outlined'} className={"add_address_btn"} />
                                 </div>
-
-
                                 {addressData?.length ? (addressData?.map((address, index) => {
                                     return (
                                         <>
@@ -118,11 +115,9 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                                                             </span>
                                                         </div>
                                                     </div>
-
                                                     <div className='add_check_box flex justify-center text-center  items-center'>
                                                         <Checkbox disableRipple checked={selectedAddress === address?._id} name={address?._id} onChange={AddressCheckboxChange} />
                                                     </div>
-
                                                 </div>
                                                 <div>
                                                     <div>
@@ -140,7 +135,6 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <span className='address_phone'>{`${address?.phoneNo}`}</span>
-
                                                     <div className='flex items-center gap-[5px]'>
                                                         <div onClick={() => actions.modal.openAddAddressDrawer(address)} >
                                                             <EditOutlinedIcon className='text-main cursor-pointer delete_icon' />
@@ -149,7 +143,6 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                                                             <DeleteOutlineOutlinedIcon className='text-red mr-[0.5rem] cursor-pointer delete_icon' />
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </>

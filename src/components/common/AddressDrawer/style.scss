@@ -11,8 +11,6 @@
     z-index: 1;
 }
 
-
-
 .address_icon {
     font-size: 30px !important;
 }
@@ -20,14 +18,13 @@
 .main_address_div {
     margin-top: 4rem;
 
-    .address_box {
-        min-height: 10rem !important;
+    .paperboxshadow{
+        overflow-wrap: anywhere !important;
     }
 
     .add_icon {
         font-size: 23px !important;
     }
-
 
     .add_address_btn {
         font-weight: 600;

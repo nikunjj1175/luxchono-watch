@@ -36,6 +36,7 @@
 
     .paperboxshadow {
         min-height: 9rem !important;
+        overflow-wrap: anywhere !important;
     }
 
     margin-top: 4rem;
@@ -64,7 +65,7 @@
         font-size: 23px !important;
     }
 
-    .address_error{
+    .address_error {
         color: $error;
         font-weight: 600;
         font-size: 14px;
@@ -85,7 +86,7 @@
 
 //address
 .address_div {
-   
+
 
     .addres_heading {
         font-weight: 600;
@@ -250,8 +251,8 @@
 
     }
 
-    .address_error{
-        font-size: 11px !important; 
+    .address_error {
+        font-size: 11px !important;
     }
 
     .cart_add_address_btn {
