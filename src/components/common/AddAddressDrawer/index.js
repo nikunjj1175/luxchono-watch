@@ -231,7 +231,7 @@ function AddAddressDrawer() {
                                     name={'address'}
                                     placeholder={"Enter Address"}
                                     width={'100%'}
-                                    rows={1.5} />
+                                    rows={2} />
                             </div>
 
                             <div className='secound_from_value'>

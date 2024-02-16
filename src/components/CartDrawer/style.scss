@@ -85,6 +85,7 @@
 
 //address
 .address_div {
+   
 
     .addres_heading {
         font-weight: 600;
@@ -290,7 +291,7 @@
     }
 
     .address_div {
-        height: 9rem !important;
+        min-height: 9rem !important;
     }
 
     .drawer_footer {

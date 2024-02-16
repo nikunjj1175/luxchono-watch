@@ -45,11 +45,7 @@ export default function OrderPage() {
                         <div className='mt-[1.3rem] '>
                             <Grid container spacing={4} style={{ minHeight: "50vh" }} >
                                 <Grid item xs={12} lg={3} md={6} sm={6}  >
-
                                     <div className=' paperboxshadow h-[10rem] flex mb-[1rem] justify-between '  >
-
-
-
                                         <div className='flex items-center gap-[10px]'>
                                             <div className='order_img ' >
                                                 <img className='w-[100%] h-[100%] object-cover' src={demop}></img>
@@ -67,16 +63,11 @@ export default function OrderPage() {
                                                 <KeyboardArrowRightIcon className='more_icon text-main' />
                                             </IconButton>
                                         </div>
-
-
                                     </div>
-
                                 </Grid>
                             </Grid>
                         </div>
                     </div>
-
-
                     {/* order not available then show this dev */}
                     {/* <div className='flex justify-center items-center' style={{ height: "50vh" }} >
                         <div className='flex flex-col justify-center items-center not_found_div'>
@@ -91,13 +82,12 @@ export default function OrderPage() {
                             </div>
                         </div>
                     </div> */}
-
                 </div>
             </div>
 
             <OrderDetailsModal />
-        </>
 
+        </>
 
     )
 }

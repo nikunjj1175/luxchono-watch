@@ -25,7 +25,7 @@ const Textareas = ({
                     },
                 },
             }}
-           
+
 
             minRows={minRows}
             multiline

@@ -173,7 +173,6 @@ export default function HomePage() {
               </>
             )
           })}
-
         </Grid>
       </div>
 
@@ -193,23 +192,21 @@ export default function HomePage() {
           pauseOnHover={true}
           blurBorders={false}
           blurBoderColor={'#fff'}>
-
           {brandData?.map((brand, index) => {
             return (
               <>
                 <Slider.Slide>
-                  <img src={brand?.icon} alt="any" className='w-36' />
+                  <img src={brand?.icon} alt="any" className="w-[6.5rem]" />
                 </Slider.Slide>
               </>
             )
-
           })}
         </Slider>
       </div>
 
       <div className="mt-[3rem]">
-        <Grid container className="services_grid bg-darkbg mt-[3rem]" >
 
+        <Grid container className="services_grid bg-darkbg mt-[3rem]">
           <Grid item xs={12} lg={3} md={6} sm={6} >
             <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%] " >
               <GppGoodOutlinedIcon style={{ fontSize: "60px" }} className="text-secondary" />
@@ -234,14 +231,12 @@ export default function HomePage() {
               <span className="text-secondary text-[20px] !font-medium capitalize">{"7-day Replacement"}</span>
             </div>
           </Grid>
-
-
         </Grid>
+
       </div>
 
       <OrderConformModal />
       <LoginAlertModal />
-
 
     </>
   );

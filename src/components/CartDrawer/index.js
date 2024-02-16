@@ -357,7 +357,7 @@ function CartDrawer() {
 
                     {/*-------------------address are available then show this div------------------------ */}
                     {selectedSingleAddress && (
-                      <div className="address_div paperboxshadow  mt-[1rem] p-[0.7rem]">
+                      <div className="address_div paperboxshadow   mt-[1rem] p-[0.7rem]">
                         <div className="flex items-center justify-between ">
                           <span className="addres_heading">
                             {"Shipping Address"}
