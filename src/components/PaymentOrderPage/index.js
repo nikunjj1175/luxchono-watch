@@ -31,7 +31,7 @@ export default function PaymentOrderPage() {
 
 
   return (
-    <div className='mt-[5rem] '>
+    <div className='mt-[5rem]  p-[1rem]'>
 
       <div className='paymentOrder'>
         <div className='flex flex-col h-[60vh] justify-center  items-center gap-[5px]' >
