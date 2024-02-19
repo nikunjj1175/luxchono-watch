@@ -205,7 +205,6 @@ export default function HomePage() {
       </div>
 
       <div className="mt-[3rem]">
-
         <Grid container className="services_grid bg-darkbg mt-[3rem]">
           <Grid item xs={12} lg={3} md={6} sm={6} >
             <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%] " >

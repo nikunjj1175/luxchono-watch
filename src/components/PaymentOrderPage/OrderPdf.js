@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#ffffff',
         padding: 20,
+
     },
     section: {
         marginBottom: 10,
@@ -102,8 +103,6 @@ const OrderPdf = ({ orderData }) => {
         <Document>
             <Page size="A4" style={styles.page}>
 
-
-
                 <View style={styles.section}>
 
                     <Image src={Logo} style={styles.logo} />
@@ -120,7 +119,6 @@ const OrderPdf = ({ orderData }) => {
                             <Text>
                                 <Text >{"Contact number : "}</Text>
                                 <Text>{orderData?.phoneNo}</Text>
-
                             </Text>
 
                             <Text>
@@ -165,7 +163,7 @@ const OrderPdf = ({ orderData }) => {
                             return (
                                 <View style={styles.tableRow} key={index}>
                                     <Text style={styles.tableCell}>{item?.product?.name}</Text>
-                                    <Text style={styles.tableCell}>{`${item?.product?.price?.toLocaleString('en-IN')} ₹`}</Text>
+                                    <Text style={styles.tableCell}>{`${item?.product?.price?.toLocaleString('en-IN')} Rs.`}</Text>
                                     <Text style={styles.tableCell}>{item?.product?.warranty}</Text>
                                     <Text style={styles.tableCell}>{item?.quantity}</Text>
                                 </View>
@@ -180,17 +178,17 @@ const OrderPdf = ({ orderData }) => {
                         <View style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
                             <Text>
                                 <Text >{"Total : "}</Text>
-                                <Text>{`${orderData?.totalAmount?.toLocaleString('en-IN')} ₹`}</Text>
+                                <Text>{`${orderData?.totalAmount?.toLocaleString('en-IN')} Rs.`}</Text>
                             </Text>
 
                             <Text>
                                 <Text >{"Discount : "}</Text>
-                                <Text>{`${orderData?.discountAmount?.toLocaleString('en-IN')} ₹`}</Text>
+                                <Text>{`${orderData?.discountAmount?.toLocaleString('en-IN')} Rs.`}</Text>
                             </Text>
 
                             <Text>
                                 <Text>{"Payment : "}</Text>
-                                <Text style={{ color: "#964315" }}>{`${orderData?.paymentAmount?.toLocaleString('en-IN')} ₹`}</Text>
+                                <Text style={{ color: "#964315" }}>{`${orderData?.paymentAmount?.toLocaleString('en-IN')} Rs.`}</Text>
                             </Text>
                         </View>
                     </View>

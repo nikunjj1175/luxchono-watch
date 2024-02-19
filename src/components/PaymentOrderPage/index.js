@@ -7,6 +7,7 @@ import { actions } from '../../redux/store';
 import dayjs from 'dayjs';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import OrderPdf from './OrderPdf';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 
 export default function PaymentOrderPage() {
@@ -18,12 +19,15 @@ export default function PaymentOrderPage() {
 
   const { data: OrderApiData, isFetching: OrderFetching } = useGetOrderQuery(orderId);
 
+  const [showError, setShowError] = useState();
+
   const [orderData, setOrderData] = useState([])
 
-  console.log(orderData, "orderData")
+  console.log(OrderApiData, "OrderApiData")
 
   useEffect(() => {
     actions.loder.setLoading(OrderFetching);
+    OrderApiData?.statusCode === 400 && setShowError(true)
     setOrderData(OrderApiData?.data)
     actions.loder.setLoading(OrderFetching);
   }, [OrderApiData])
@@ -41,7 +45,8 @@ export default function PaymentOrderPage() {
       <div className='paymentOrder'>
         <div className='flex flex-col h-[60vh] justify-center  items-center gap-[5px]' >
           {!OrderFetching &&
-            <>
+
+            (!showError ? (<>
               <div>
                 <TaskAltIcon className='text-main conform_icon' />
               </div>
@@ -70,12 +75,21 @@ export default function PaymentOrderPage() {
 
               <div className="mt-[1rem]">
                 <button className='pdf_download' onClick={() => { }}  >
-                  <PDFDownloadLink document={<OrderPdf orderData={orderData} />} fileName="order_bill.pdf">
-                    {({ blob, url, loading, error }) => (loading ? 'Loading Order...' : 'Download Order')}
+                  <PDFDownloadLink document={<OrderPdf orderData={orderData} />} fileName="Luxchono_Order.pdf">
+                    {({ blob, url, loading, error }) => (loading ? 'Loading...' : 'Download Order')}
                   </PDFDownloadLink>
                 </button>
               </div>
-            </>
+            </>) : (
+              <span className='payment_error_div'>
+                <div className='flex flex-col gap-[3px]'>
+                  <span className=' flex items-center gap-[5px]'>
+                    <ErrorOutlineIcon className='text-main error_icon' />
+                    <span className='error_title'>{`${OrderApiData?.message} !`}</span>
+                  </span>
+                  <span className='error_desc text-lighttext'>{"Something went wrong , Don't worry Our team will contact you shortly"}</span>
+                </div>
+              </span>))
           }
         </div>
       </div>

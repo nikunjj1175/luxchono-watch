@@ -47,10 +47,17 @@ export const ProductApi = createApi({
                 };
             },
             providesTags: ['Like'],
-        })
-
-
+        }),
+        GetSingleProduct: builder.query({
+            query: (id) => {
+                return {
+                    url: `/product/${id}`,
+                   
+                };
+            },
+            providesTags: ['Product'],
+        }),
     }),
 });
 
-export const { useGetProductQuery, useLikeProductMutation, useGetLikeProductQuery,useGetWishlistProductQuery } = ProductApi;
+export const { useGetProductQuery, useLikeProductMutation, useGetLikeProductQuery, useGetWishlistProductQuery,useGetSingleProductQuery } = ProductApi;
