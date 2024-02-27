@@ -15,10 +15,9 @@ export default function CancelOrderModal() {
         actions.modal.closeCancelOrderModal();
     }
 
-    const logout = () => {
+    const cancelOrder = () => {
         navigate('/home')
         onCancel();
-        localStorage.removeItem("lw-token")
     }
 
 
@@ -57,7 +56,7 @@ export default function CancelOrderModal() {
                                 variant={"outlined"}
                                 className={"cancel_btn"} />
                             <Buttons
-                                onClick={logout}
+                                onClick={cancelOrder}
                                 type={"submit"}
                                 text={"Yes"}
                                 variant={"contained"}
