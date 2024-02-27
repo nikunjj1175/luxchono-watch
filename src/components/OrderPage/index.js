@@ -69,7 +69,7 @@ export default function OrderPage() {
                             {allOrderData?.map((order, index) => {
                                 return (
                                     <>
-                                        <Accordion className=' mainac' defaultExpanded={true} >
+                                        <Accordion className='mainac mt-[1rem]' defaultExpanded={true} >
                                             <AccordionSummary
                                                 style={{ height: "7rem", display: "flex", justifyContent: "start", alignItems: "start" }}
                                                 expandIcon={< ExpandMoreIcon style={{ display: "flex", justifyContent: "center" }} />}

@@ -20,7 +20,6 @@ export default function CancelOrderModal() {
         onCancel();
     }
 
-
     return (
         <Dialog
             open={DialogOpen.open}
