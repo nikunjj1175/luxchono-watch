@@ -25,6 +25,7 @@ import {
 import { toast } from "react-toastify";
 import { useGetSingleAddressQuery } from "../../api/Address";
 import { escape } from "lodash";
+import dayjs from "dayjs";
 
 function CartDrawer() {
   const DialogOpen = useSelector((state) => state.modal.Cart);
@@ -378,7 +379,7 @@ function CartDrawer() {
                             {`${selectedSingleAddress?.address} , ${selectedSingleAddress?.city} , ${selectedSingleAddress?.state} - `}{" "}
                             <span
                               style={{ fontWeight: "600" }}
-                            >{`${395008}`}</span>
+                            >{`${selectedSingleAddress?.pincode}`}</span>
                           </span>
                           <span className="text-black add_phon">
                             {selectedSingleAddress?.phoneNo}
@@ -582,7 +583,7 @@ function CartDrawer() {
                     >
                       <span>Delivered on</span>
                       <span className="text-main underline  decoration-main">
-                        Feb 11,2024
+                        {dayjs(orderSummaryData?.deliveryDate).format('MMM DD, YYYY')}
                       </span>
                     </span>
                   </div>

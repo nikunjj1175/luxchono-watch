@@ -48,9 +48,6 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
 
     const location = useLocation();
     const { pathname } = location;
-
-    console.log(pathname, "pathname")
-
     //setps
 
     return (
@@ -92,15 +89,15 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                         <div className='flex justify-center items-center h-[90vh]'>
                             <Loader height={"50"} width={"50"} />
                         </div>
-
                     ) :
                         (
-
                             <div className='main_address_div' style={{ overflow: "auto", paddingBottom: "6rem" }}>
                                 <div className='p-[0.5rem]'>
                                     <Buttons onClick={() => actions.modal.openAddAddressDrawer()} startIcon={<AddCircleOutlineOutlinedIcon className='add_icon' />} text={"Add New Address"} variant={'outlined'} className={"add_address_btn"} />
                                 </div>
                                 {addressData?.length ? (addressData?.map((address, index) => {
+
+                                    console.log(address, "addressaddress")
                                     return (
                                         <>
                                             <div className='flex flex-col gap-[4px] justify-center paperboxshadow  m-[1rem] p-[1rem]  address_box cursor-pointer' >
@@ -127,7 +124,7 @@ function AddressDrawer({ setSelectedDeliveryAddress, showCheckBox }) {
                                                 <div>
                                                     <div>
                                                         <span className='address_line'>
-                                                            <span>{`${address?.address} , ${address?.city} , ${address?.state} - `} <span style={{ fontWeight: "600" }}>{`${395008}`}</span>
+                                                            <span>{`${address?.address} , ${address?.city} , ${address?.state} - `} <span style={{ fontWeight: "600" }}>{`${address?.pincode}`}</span>
                                                             </span>
 
                                                         </span>

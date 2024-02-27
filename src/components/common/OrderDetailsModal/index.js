@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { useSelector } from 'react-redux';
@@ -7,29 +7,33 @@ import { actions } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../Buttons';
 import { Box, Step, StepContent, StepLabel, Stepper, Typography } from '@mui/material';
-import { useState } from 'react';
 import { Button } from 'bootstrap';
 import { handleStatusesBadge } from '../customBadge';
 import CloseIcon from '@mui/icons-material/Close';
 import CancelOrderModal from '../CancelOrderModal';
+import dayjs from 'dayjs';
+
 
 export default function OrderDetailsModal() {
 
     const DialogOpen = useSelector((state) => state.modal.OrderDetails);
 
-    console.log(DialogOpen, "DialogOpen")
-    const navigate = useNavigate()
+    const [orderDetails, setOrderDetails] = useState([]);
+
+    console.log(orderDetails, "orderDetails")
+
+    useEffect(() => {
+        setOrderDetails(DialogOpen?.data)
+    }, [DialogOpen?.data])
+
+
+
     const onCancel = () => {
         actions.modal.closeOrderDetailsModal();
     }
 
-    const logout = () => {
-        navigate('/home')
-        onCancel();
-        localStorage.removeItem("lw-token")
-    }
 
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -45,22 +49,38 @@ export default function OrderDetailsModal() {
 
     const steps = [
         {
-            label: 'Ordered',
-            description: `Feb 06,2024 02:26 PM`,
+            label: 'Pending',
+        },
+        {
+            label: 'Completed',
         },
         {
             label: 'Shipped',
-            description: 'Feb 06,2024 02:26 PM',
         },
         {
-            label: 'Out For Delivery',
-            description: `Feb 06,2024 02:26 PM`,
+            label: 'Out Of Delivery',
         },
+
         {
             label: 'Delivered',
-            description: `Feb 06,2024 02:26 PM`,
         },
     ];
+
+    const handleActiveStep = (status) => {
+        if (status === "Pending") {
+            return 1
+        } else if (status === "Completed") {
+            return 2
+        } else if (status === "Shipped") {
+            return 3
+        } else if (status === "Out Of Delivery") {
+            return 4
+        } else if (status === "Delivered") {
+            return 5
+        }
+
+    }
+
 
 
     return (
@@ -84,21 +104,22 @@ export default function OrderDetailsModal() {
                                 <div className='flex flex-col gap-[2px] '>
                                     <span className='order_heading flex gap-[5px]' >
                                         <span className='text-black'>{"Order Id"}</span>
-                                        <span className='text-main'>{"#483273477"} </span>
+                                        <span className='text-main'>{orderDetails?.orderId} </span>
                                     </span>
 
                                     <div className='flex gap-[5px] text-[14px]' style={{ fontWeight: "600" }} >
-                                        <span className='text-black '>{"Fossil gen 3 Watch"}</span>
+
+                                        <span className='text-black'>Delivered on</span>
+                                        <span className="text-main">
+                                            {dayjs(orderDetails?.deliveryDate).format('MMM DD, YYYY')}
+                                        </span>
+
                                     </div>
 
-                                    <span className='flex gap-[5px] text-[14px]' style={{ fontWeight: "600" }} >
-                                        <span className='text-black '>{"3 quantity : "}</span>
-                                        <span className='text-main '>{"3000$"} </span>
-                                    </span>
 
                                     <span className='mt-[0.3rem]'>
-                                        <span style={handleStatusesBadge("Pending")}>
-                                            {"Pending"}
+                                        <span style={handleStatusesBadge(orderDetails?.status)}>
+                                            {orderDetails?.status}
                                         </span>
                                     </span>
 
@@ -106,14 +127,14 @@ export default function OrderDetailsModal() {
 
                                 <div className='flex mt-[0.7rem]'>
 
-                                    <Stepper activeStep={activeStep} orientation="vertical">
+                                    <Stepper activeStep={handleActiveStep(orderDetails?.status)} orientation="vertical">
                                         {steps.map((step, index) => (
                                             <Step key={step.label}>
                                                 <StepLabel>
                                                     <span className='order_status'>{step.label}</span>
                                                 </StepLabel>
                                                 <StepContent>
-                                                    <span className='text-main text-[13px]'>{step.description}</span>
+                                                    <span className='text-main text-[13px]'>{dayjs(orderDetails?.updatedAt)?.format("MMMM D, YYYY h:mm A")}</span>
                                                 </StepContent>
                                             </Step>
                                         ))}

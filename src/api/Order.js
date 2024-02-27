@@ -38,8 +38,16 @@ export const OrderApi = createApi({
             },
             providesTags: ['Order'],
         }),
+        GetAllOrder :builder.query({
+            query: (orderId) => {
+                return {
+                    url: `/order/get-user-order`,
+                };
+            },
+            providesTags: ['Order'],
+        }),
 
     }),
 });
 
-export const { useMakeOrderMutation, usePaymentOrderMutation, useGetOrderQuery } = OrderApi;
+export const { useMakeOrderMutation, usePaymentOrderMutation, useGetOrderQuery ,useGetAllOrderQuery } = OrderApi;

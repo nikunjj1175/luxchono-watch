@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import dayjs from 'dayjs';
-
 // Import your company logo
 import Logo from '../../assets/image/PdfLogo.png';
+import { useGetOrderQuery } from '../../api/Order';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
         gap: "3px",
         fontSize: '13px',
         marginBottom: 60,
-
     },
 
     thankYou: {
@@ -99,6 +98,8 @@ const styles = StyleSheet.create({
 
 // Create PDF component
 const OrderPdf = ({ orderData }) => {
+
+
     return (
         <Document>
             <Page size="A4" style={styles.page}>

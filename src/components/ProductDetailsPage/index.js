@@ -78,14 +78,11 @@ const ProductDetails = () => {
         const categoryArry = singleProductData?.category?.map((items) => {
             return items?.name
         })
-
         setCategoryList(categoryArry?.join())
-
     }, [singleProductData])
 
 
     const likeProducts = async () => {
-
         if (TOKEN) {
             setShowLikeButton(!showLikeButton)
             try {
@@ -101,11 +98,9 @@ const ProductDetails = () => {
         } else {
             actions.modal.openLoginAlertModal()
         }
-
     }
 
     const handleAddToCart = async () => {
-
         if (TOKEN) {
             const body = {
                 pid: productId
@@ -128,8 +123,6 @@ const ProductDetails = () => {
         } else {
             actions.modal.openLoginAlertModal()
         }
-
-
     }
 
     const ViewAllProduct = () => {

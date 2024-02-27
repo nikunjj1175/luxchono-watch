@@ -14,6 +14,7 @@ import Loader from '../common/Loader';
 import LoginAlertModal from '../common/LoginAlertModal';
 
 export default function ProductsPage() {
+
     const [input, setinput] = useState('');
     const [search, setsearch] = useState('');
     const [filterStartPrice, setFilterStartPrice] = useState();
