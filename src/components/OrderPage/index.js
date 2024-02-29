@@ -35,8 +35,6 @@ export default function OrderPage() {
 
     const { data: OrderApiData, isFetching: OrderFetching } = useGetOrderQuery(allOrderData?.orderId);
 
-    console.log(OrderApiData, "OrderApiData")
-
     useEffect(() => {
         actions.loder.setLoading(AllOrderFetching);
         setAllOrderData(AllApiOrderData?.data)
@@ -47,11 +45,12 @@ export default function OrderPage() {
         navigate("/home")
     }
 
+
     return (
         <>
             <div className='mt-[5rem] '>
-                <div className='order_div lex flex-col p-[1.5rem] '>
-                    <div className='flex flex-row gap-[5px] items-center '>
+                <div className='order_div lex flex-col p-[1.5rem]' style={{ minHeight: "59vh" }}>
+                    <div className='flex flex-row gap-[5px] items-center'>
                         <div>
                             <span className='order_heading text-[25px]' >My Order</span>
                         </div>
@@ -60,12 +59,12 @@ export default function OrderPage() {
                         </div>
                     </div>
 
-                    {AllApiOrderData?.data?.length !== 0 ? (<div className='oinfo_div mt-[0.3rem]'>
+                    {(AllApiOrderData?.data?.length !== 0 && AllApiOrderData?.success) ? (<div className='oinfo_div mt-[0.3rem]'>
                         <div>
                             <span className='order_desc_heading text-[18px]'>Mange and control your order</span>
                         </div>
 
-                        <div className='mt-[1.3rem] ' style={{ minHeight: "50vh" }}>
+                        <div className='mt-[1.3rem]' style={{ minHeight: "50vh" }}>
                             {allOrderData?.map((order, index) => {
                                 return (
                                     <>
@@ -166,7 +165,7 @@ export default function OrderPage() {
 
                         </div>
                     </div>) : (
-                        !AllOrderFetching && <div className='flex justify-center items-center' style={{ height: "50vh" }} >
+                        (!AllOrderFetching) && <div className='flex justify-center items-center' style={{ minHeight: "50vh" }}>
                             <div className='flex flex-col justify-center items-center not_found_div'>
                                 <div>
                                     <ErrorOutlineOutlinedIcon className='not_found_icon text-main' />

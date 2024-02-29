@@ -17,6 +17,7 @@ const initialState = {
     OrderConform: emptyObj,
     CancelOrder: emptyObj,
     LoginAlert: emptyObj,
+    changePassword: emptyObj,
 };
 
 export const modalSlice = createSlice({
@@ -65,6 +66,9 @@ export const modalSlice = createSlice({
         openLoginAlertModal: (state, { payload }) => {
             state.LoginAlert = { open: true, data: payload };
         },
+        openChangePasswordModal: (state, { payload }) => {
+            state.changePassword = { open: true, data: payload };
+        },
 
 
 
@@ -110,6 +114,9 @@ export const modalSlice = createSlice({
         closeLoginAlertModal: (state, { payload }) => {
             state.LoginAlert = emptyObj;
         },
+        closeChangePasswordModal: (state, { payload }) => {
+            state.changePassword = emptyObj;
+        },
     },
 });
 
@@ -127,6 +134,7 @@ export const {
     openOrderConformModal,
     openCancelOrderModal,
     openLoginAlertModal,
+    openChangePasswordModal,
 
     closeLogoutModal,
     closeLikeDrawer,
@@ -140,6 +148,7 @@ export const {
     closeOrderDetailsModal,
     closeOrderConformModal,
     closeCancelOrderModal,
-    closeLoginAlertModal
+    closeLoginAlertModal,
+    closeChangePasswordModal
 } = modalSlice.actions;
 export default modalSlice.reducer;
