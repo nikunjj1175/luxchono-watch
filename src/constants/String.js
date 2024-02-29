@@ -39,8 +39,9 @@ export const STRING = {
     "Please verify your account in mail with Invitation link",
   LUXCHONO: "Luxchono",
   REGISTER_PHONNO: "phon Number",
-  REGISTER_PHONNO_PLACEHOLDER : "Enter Phon Number",
+  REGISTER_PHONNO_PLACEHOLDER: "Enter Phon Number",
   REGISTER_PHONNO_REQUIRED: "Phon Number is required",
+  FORGOT_PASSWORD_LINK: 'Forgot password?',
 
   NOW_GOTO_LOGIN: "Now go to Login",
   CHECK_MAIL_BOX: "Check your mail",

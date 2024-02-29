@@ -12,6 +12,8 @@ import Products from "../pages/Products";
 import Profile from "../pages/Profile";
 import Order from "../pages/Order";
 import PaymentOrder from "../pages/PaymentOrder";
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 export default function Router() {
   return (
@@ -22,6 +24,8 @@ export default function Router() {
         <Routes>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
+          <Route path="/reset-password" element={<ResetPassword />}></Route>
           <Route path="/emailverify" element={<EmailVerify />}></Route>
           <Route path="/otpverify" element={<OtpVerify />}></Route>
           <Route path="/register" element={<Register />}></Route>

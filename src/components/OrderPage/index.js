@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import demop from "../../assets/image/demop.png";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import OrderDetailsModal from '../common/OrderDetailsModal';
-import { handleStatusesBadge } from '../common/customBadge';
+import { handleStatusesBadge } from '../common/customBadge'
 import CloseIcon from '@mui/icons-material/Close';
 import { useGetAllOrderQuery, useGetOrderQuery } from '../../api/Order';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

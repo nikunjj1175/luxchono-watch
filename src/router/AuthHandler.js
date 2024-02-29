@@ -12,7 +12,7 @@ const AuthHandler = () => {
   console.log(email, "email");
   useEffect(() => {
     if (token) {
-      ["/login", "/emailverify", "/register", "/otpverify"]?.includes(
+      ["/login", "/emailverify", "/register", "/otpverify", "/forgotpassword", "/reset-password"]?.includes(
         pathname
       ) && navigate("/home");
     } else {
@@ -21,6 +21,8 @@ const AuthHandler = () => {
           "/register",
           "/emailverify",
           "/otpverify",
+          "/forgotpassword",
+          "/reset-password",
           "/home",
           "/login",
           "/productdetails",
