@@ -5,16 +5,14 @@ import { useSelector } from 'react-redux';
 import { actions } from '../../../redux/store';
 import './style.scss';
 import TextFields from '../TextFields';
-import Selects from '../Selects';
 import * as Yup from 'yup';
-import Textareas from '../Textarea';
-import { ADDRESS_TYPE_LIST, STATE_LIST, STATE_LIST_OPTIONS } from '../../../constants/Array';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
-import { REGEX } from '../../../constants/Regex';
-import { useAddAddressMutation, useEditAddressMutation } from '../../../api/Address';
 import { toast } from 'react-toastify';
 import { useChangePasswordMutation } from '../../../api/Login';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useState } from 'react';
+import { STRING } from '../../../constants/String';
 function ChangePasswordDrawer() {
     const DialogOpen = useSelector((state) => state.modal.changePassword);
 
@@ -24,17 +22,25 @@ function ChangePasswordDrawer() {
         changePassword.resetForm();
     }
 
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    const [showPasswordNew, setShowPasswordNew] = useState(false);
+    const togglePasswordNewVisibility = () => {
+        setShowPasswordNew((prev) => !prev);
+    };
 
     const changePassword = useFormik({
         initialValues: {
             password: '',
             newPassword: '',
-
         },
 
         validationSchema: Yup.object().shape({
-            password: Yup.string().trim().required("Password is Required"),
-            newPassword: Yup.string().trim().required("New Password is Required"),
+            password: Yup.string().trim().required("Password is Required").min(6, STRING.LOGIN_PASSWORD_FORMAT),
+            newPassword: Yup.string().trim().required("New Password is Required").min(6, STRING.LOGIN_PASSWORD_FORMAT),
         }),
 
         onSubmit: async (values) => {
@@ -67,7 +73,6 @@ function ChangePasswordDrawer() {
                 transitionDuration={1000}>
 
                 <form onSubmit={changePassword.handleSubmit} className='add_addres_drawer_div' style={{ width: "390px" }}>
-
                     <div className="add_address_drawer_header_wrapper">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
                             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: "5px", height: "0px" }}>
@@ -78,7 +83,7 @@ function ChangePasswordDrawer() {
                                         fontWeight: "600",
                                         marginLeft: "0.5rem"
                                     }}>
-                                    {DialogOpen?.data?._id ? `Edit Address` : ` Add Address`}
+                                    {`Change Password`}
                                 </p>
 
                             </div>
@@ -102,7 +107,18 @@ function ChangePasswordDrawer() {
                                         helperText={changePassword.touched.password && changePassword.errors.password}
                                         className={"nametext"}
                                         placeholder={"Enter Password"}
-                                        autoComplete={"off"} />
+                                        autoComplete={"off"}
+                                        type={showPassword ? "text" : "password"}
+                                        action={togglePasswordVisibility}
+                                        endAdornment={true}
+                                        icons={
+                                            showPassword ? (
+                                                <VisibilityIcon className="!text-[1.1rem]" />
+                                            ) : (
+                                                <VisibilityOffIcon className="!text-[1.1rem]" />
+                                            )
+                                        }
+                                    />
 
                                 </div>
                                 <div className='flex flex-col gap-[3px] mt-[0.8rem]'>
@@ -114,7 +130,18 @@ function ChangePasswordDrawer() {
                                         helperText={changePassword.touched.newPassword && changePassword.errors.newPassword}
                                         className={"nametext"}
                                         placeholder={"Enter New Password"}
-                                        autoComplete={"off"} />
+                                        autoComplete={"off"}
+                                        type={showPasswordNew ? "text" : "password"}
+                                        action={togglePasswordNewVisibility}
+                                        endAdornment={true}
+                                        icons={
+                                            showPasswordNew ? (
+                                                <VisibilityIcon className="!text-[1.1rem]" />
+                                            ) : (
+                                                <VisibilityOffIcon className="!text-[1.1rem]" />
+                                            )
+                                        }
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -128,7 +155,6 @@ function ChangePasswordDrawer() {
                     </div>
 
                 </form>
-
 
             </Drawer>
         </>

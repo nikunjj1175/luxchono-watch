@@ -144,15 +144,11 @@ export default function OrderDetailsModal() {
                             </div>
 
                             <div className='btns flex gap-[10px] mt-[2rem] items-center justify-center'>
-
-
                                 <Buttons
                                     onClick={() => actions.modal.openCancelOrderModal()}
                                     text={"Cancel Order"}
                                     variant={"contained"}
-                                    className={"cancel_btn"}
-                                />
-
+                                    className={"cancel_btn"} />
                             </div>
                         </div>
                     </DialogContent>

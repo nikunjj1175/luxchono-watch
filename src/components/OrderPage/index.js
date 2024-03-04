@@ -82,8 +82,8 @@ export default function OrderPage() {
                                                             </span>
                                                         </span>
                                                     </div>
-                                                    <div className='flex gap-[2px] items-center'>
-                                                        <span className='text-black ordern_titel'>Order Id.</span>
+                                                    <div className='flex gap-[5px] items-center'>
+                                                        <span className='text-black ordern_titel'>Order Id</span>
                                                         <span className='text-main  orderv_titel'>{order?.orderId}</span>
                                                     </div>
 
@@ -97,7 +97,7 @@ export default function OrderPage() {
 
                                                 <div className='mb-[1rem] '>
 
-                                                    <div>
+                                                    {/* <div>
                                                         <span className='dd_title'>Delivery details</span>
                                                     </div>
 
@@ -114,8 +114,53 @@ export default function OrderPage() {
                                                             <span>{`${order?.address} , ${order?.city} , ${order?.state} - `} <span style={{ fontWeight: "600" }}>{`${order?.pincode}`}</span>
                                                             </span>
                                                         </span>
-                                                    </div>
+                                                    </div> */}
 
+                                                    <div className="flex gap-[30px] details_div">
+                                                        <div>
+                                                            <div>
+                                                                <span className='dd_title'>Delivery details</span>
+                                                            </div>
+
+                                                            <div>
+                                                                <span className='address_name'>{order?.fullName}</span>
+                                                            </div>
+
+                                                            <div>
+                                                                <span className='address_phone'>{order?.phoneNo}</span>
+                                                            </div>
+
+                                                            <div>
+                                                                <span className='address_line'>
+                                                                    <div style={{ maxWidth: "20rem" }}>
+                                                                        <span>{`${order?.address} , ${order?.city} , ${order?.state} - `} <span >{`${order?.pincode}`}</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div>
+                                                                <div>
+                                                                    <span className='dd_title'>Payment details</span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <span className='address_name'>{`Total Amount : ${order?.totalAmount?.toLocaleString("en-IN")} ₹`}</span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <span className='address_phone'>{`Discount Amount : ${order?.discountAmount?.toLocaleString("en-IN")} ₹`}</span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <span className='address_name'>{`Payment Amount : ${order?.paymentAmount?.toLocaleString("en-IN")} ₹`}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
 
                                                 <Grid container spacing={4}  >
@@ -148,21 +193,19 @@ export default function OrderPage() {
                                                     })}
                                                 </Grid>
 
-                                                {/* <div style={{ display: "flex", justifyContent: "right" }}>
+                                                <div style={{ display: "flex", justifyContent: "right" }}>
                                                     <button className='pdf_download' onClick={() => { }}  >
-                                                        <PDFDownloadLink document={<OrderPdf orderData={allOrderData}  />} fileName="Luxchono_Order.pdf">
+                                                        <PDFDownloadLink document={<OrderPdf orderData={order} />} fileName="Luxchono_Order.pdf">
                                                             {({ blob, url, loading, error }) => (loading ? 'Loading...' : 'Download Order')}
                                                         </PDFDownloadLink>
                                                     </button>
-                                                </div> */}
+                                                </div>
 
                                             </AccordionDetails>
                                         </Accordion>
                                     </>
                                 )
-
                             })}
-
                         </div>
                     </div>) : (
                         (!AllOrderFetching) && <div className='flex justify-center items-center' style={{ minHeight: "50vh" }}>

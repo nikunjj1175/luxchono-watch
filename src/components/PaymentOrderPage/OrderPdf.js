@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
 // Create PDF component
 const OrderPdf = ({ orderData }) => {
 
+    console.log(orderData,"orderDataorderData")
 
     return (
         <Document>
