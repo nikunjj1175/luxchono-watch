@@ -72,7 +72,7 @@ export default function Login() {
             <form onSubmit={login.handleSubmit}>
               {/* <div className='flex items-center justify-center m-[2.5rem]'>
                                 <img src={Logo} alt="logo" className='!ml-[1rem]' />
-                            </div> */}
+                  </div> */}
               <div className="flex flex-col gap-[5px] !ml-[3rem] !mr-[3rem] lgoinform mt-[6rem]">
                 <Typography
                   className="!font-bold !text-[28px]"

@@ -14,6 +14,7 @@ import Order from "../pages/Order";
 import PaymentOrder from "../pages/PaymentOrder";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 export default function Router() {
   return (
@@ -34,6 +35,7 @@ export default function Router() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/order" element={<Order />}></Route>
           <Route path="/paymentorder" element={<PaymentOrder />} ></Route>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} ></Route>
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>

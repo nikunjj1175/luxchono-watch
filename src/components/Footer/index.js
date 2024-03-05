@@ -10,6 +10,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { Link } from 'react-router-dom';
 export default function Footer() {
     return (
         <>
@@ -92,7 +93,7 @@ export default function Footer() {
 
                             <div className='flex gap-[10px]'>
                                 <ul className='flex flex-col gap-[5px]' >
-                                    <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}>{"1800-232-3332 "}</li>
+                                    <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}>{"+91 8780529184"}</li>
                                     <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}> {"luxchono@gmail.com"}</li>
                                     <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}>{"Help & Contact"}</li>
                                     <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}>{"FAQs"}</li>
@@ -104,13 +105,12 @@ export default function Footer() {
                             </div>
                             <div className='flex gap-[10px]'>
                                 <ul className='flex flex-col gap-[5px]' >
-                                    <li className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }}>{"Brand Protection"}</li>
+                                    <Link className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }} to={"/privacy-policy"} >{"privacy-policy"}</Link>
+                                    <Link className='text-white text-[15px] li_underline' style={{ fontWeight: "300" }} to={"/privacy-policy"}>{"terms and conditions"}</Link>
                                 </ul>
                             </div>
                         </div>
-
                     </Grid>
-
 
                     <Grid item xs={12} lg={3} md={4} sm={4} >
 
