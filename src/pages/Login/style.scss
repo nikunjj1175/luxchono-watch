@@ -7,7 +7,7 @@
 }
 
 .MuiFormHelperText-root {
-   
+
     color: $error !important;
     font-weight: 600 !important;
 }
@@ -54,6 +54,8 @@
     .logincontainer {
         background-image: none !important;
         width: 100% !important;
+        height: 100% !important;
+
 
         .loginpepar {
             width: 100% !important;
@@ -74,6 +76,7 @@
     .logincontainer {
         .loginpepar {
             width: 100% !important;
+
             border-radius: 0rem !important;
         }
     }
