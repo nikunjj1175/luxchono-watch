@@ -6,7 +6,6 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import AddressDrawer from '../common/AddressDrawer';
 import { actions } from '../../redux/store';
-import LogoutModal from '../common/LogoutModal';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +19,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import dayjs from 'dayjs';
 import OrderPdf from '../PaymentOrderPage/OrderPdf';
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import RatingModal from '../common/RatingsModal/index';
+
 
 export default function OrderPage() {
 
@@ -76,9 +77,13 @@ export default function OrderPage() {
                                                 id="panel1a-header">
                                                 <div className='accordion_heading '>
                                                     <div>
-                                                        <span >
+                                                        <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                                             <span style={handleStatusesBadge(order?.status)}>
                                                                 {order?.status}
+                                                            </span>
+
+                                                            <span className='rating_link' onClick={() => actions.modal.openRatingModal(order)}>
+                                                                {"Given Your Rating "}
                                                             </span>
                                                         </span>
                                                     </div>
@@ -226,6 +231,8 @@ export default function OrderPage() {
             </div>
 
             <OrderDetailsModal />
+            <RatingModal />
+
 
         </>
 

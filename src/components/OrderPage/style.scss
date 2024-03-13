@@ -28,6 +28,13 @@
             flex-direction: column;
             gap: 3px;
 
+            .rating_link {
+                font-size: 14px;
+                color: $primary;
+                font-weight: 600;
+                text-decoration: underline;
+            }
+
             .ordern_titel {
                 font-size: 16px;
                 font-weight: 600;

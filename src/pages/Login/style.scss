@@ -59,7 +59,7 @@
 
         .loginpepar {
             width: 100% !important;
-            height: 100vh;
+            height: 100vh !important;
             display: flex !important;
             align-items: center;
             justify-content: center;
@@ -76,7 +76,6 @@
     .logincontainer {
         .loginpepar {
             width: 100% !important;
-
             border-radius: 0rem !important;
         }
     }

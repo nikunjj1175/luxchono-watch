@@ -43,6 +43,10 @@ function DrawerAppBar(props) {
   const location = useLocation();
   const { pathname } = location;
 
+  const cart = useSelector((state) => state.cart.data);
+
+  console.log(cart,"cartcart")
+
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>

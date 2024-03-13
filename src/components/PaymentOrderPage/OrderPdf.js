@@ -3,7 +3,6 @@ import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/render
 import dayjs from 'dayjs';
 // Import your company logo
 import Logo from '../../assets/image/PdfLogo.png';
-import { useGetOrderQuery } from '../../api/Order';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
 // Create PDF component
 const OrderPdf = ({ orderData }) => {
 
-    console.log(orderData,"orderDataorderData")
+    console.log(orderData, "orderDataorderData")
 
     return (
         <Document>

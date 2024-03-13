@@ -15,12 +15,7 @@ export default function PaymentOrderPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
-
   const orderId = queryParams.get('orderId');
-
-
-  console.log(orderId, "orderId")
-
 
   const { data: OrderApiData, isFetching: OrderFetching } = useGetOrderQuery(orderId);
 

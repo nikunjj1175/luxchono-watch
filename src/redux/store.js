@@ -4,6 +4,7 @@ import { LoginApi } from "../api/Login";
 import _ from "lodash";
 import modalReducer, { modalSlice } from "./slices/modalSlice";
 import loderReducer, { loderSlice } from "./slices/LoderSlice";
+import cartReducer, { cartSlice } from "./slices/CartSlice";
 import { ProductApi } from "../api/Product";
 import { BrandApi } from "../api/Brand";
 import { CategoryApi } from "../api/Category";
@@ -15,6 +16,7 @@ export const store = configureStore({
     reducer: {
         loder: loderReducer,
         modal: modalReducer,
+        cart: cartReducer,
         [LoginApi.reducerPath]: LoginApi.reducer,
         [ProductApi.reducerPath]: ProductApi.reducer,
         [BrandApi.reducerPath]: BrandApi.reducer,
@@ -47,4 +49,5 @@ const createActions = (slice) =>
 export const actions = {
     modal: createActions(modalSlice),
     loder: createActions(loderSlice),
+    cart: createActions(cartSlice)
 };

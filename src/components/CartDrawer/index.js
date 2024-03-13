@@ -69,6 +69,7 @@ function CartDrawer() {
   useEffect(() => {
     setCartProductData(CartProductApiData?.data?.cartProducts);
     setCartTotalSummary(CartProductApiData?.data);
+
   }, [CartProductApiData]);
 
   //make order body data
