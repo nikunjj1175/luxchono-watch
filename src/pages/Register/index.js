@@ -1,8 +1,4 @@
-import {
-  Paper,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Paper, Grid, Typography } from "@mui/material";
 import LoginImg from "../../assets/image/LoginImg2.svg";
 import TextFields from "../../components/common/TextFields";
 import "./style.scss";
@@ -29,7 +25,7 @@ export default function Register() {
   const location = useLocation();
   const { state } = location;
 
-  const email = state?.emails
+  const email = state?.emails;
 
   console.log(state, "statestate");
   const Registers = useFormik({
@@ -40,16 +36,15 @@ export default function Register() {
       email: state && state?.emails,
     },
     validationSchema: Yup.object().shape({
-      phoneNo: Yup.number().required(STRING.REGISTER_PHONNO_REQUIRED)
-        .test('Enter valid Phone number', value =>
-          !value || REGEX.PHONNUMBER.test(value.toString())
-        ),
+      phoneNo: Yup.string()
+        .required(STRING.REGISTER_PHONNO_REQUIRED)
+        .matches(REGEX.PHONNUMBER, STRING.INVALID_NUMBER),
       username: Yup.string()
         .required(STRING.REGISTER_USERNAME_REQUIRED)
-        .min(3, STRING.REGISTER_USERNAME_FORMATE),
+        .matches(REGEX.USERNAME, STRING.USER_NAME_STORANGE),
       password: Yup.string()
         .required(STRING.LOGIN_PASSWORD_REQUIRED)
-        .min(6, STRING.LOGIN_PASSWORD_FORMAT),
+        .matches(REGEX.STORAGE, STRING.PAASWORD_STORANGE),
     }),
     onSubmit: async (values) => {
       try {
@@ -86,23 +81,18 @@ export default function Register() {
                 <Typography
                   className="!font-extrabold"
                   variant="h5"
-                  component="h5">
+                  component="h5"
+                >
                   <span>
                     {STRING.LOGIN_TITAL}
-                    <span>
-                    </span>
+                    <span></span>
                   </span>
                 </Typography>
                 <Typography className="!font-bold text-light" component="span">
                   <span className="flex items-center gap-[5px]">
-                    <span>
-                      {STRING.REGISTER_DESC}
-                    </span>
-                    <span className="text-main">
-                      {email}
-                    </span>
+                    <span>{STRING.REGISTER_DESC}</span>
+                    <span className="text-main">{email}</span>
                   </span>
-
                 </Typography>
 
                 <div className="!mt-[1rem] flex flex-col gap-[20px]">

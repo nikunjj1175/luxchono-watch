@@ -56,6 +56,8 @@ const ProductDetails = () => {
 
     const [singleProductData, setSingleProductData] = useState()
 
+    console.log(singleProductData,"singleProductData")
+
 
     const [categoryList, setCategoryList] = useState();
 
@@ -198,11 +200,12 @@ const ProductDetails = () => {
                                     <div>
 
                                         <div className='mt-[0.7rem] flex gap-[10px] items-center'>
+                                            {console.log(singleProductData?.rating,"singleProductData?.rating")}
                                             <div >
-                                                <Rating name="half-rating-read" value={3.5} precision={0.5} readOnly />
+                                                <Rating name="half-rating-read" value={Number(singleProductData?.rating)} precision={0.5} readOnly />
                                             </div>
                                             <div>
-                                                <span>(3.5)</span>
+                                                <span>{singleProductData?.rating.toFixed(1)}</span>
                                             </div>
                                         </div>
 
@@ -211,7 +214,7 @@ const ProductDetails = () => {
                                         <span className='text-[23px]'> <span style={{ fontWeight: "700" }}>{`${singleProductData?.price.toLocaleString('en-IN')} ₹`}</span></span>
                                         <span className="text-hide !font-bold text-[20px]" style={{ textDecoration: "line-through" }}>{`${singleProductData?.dummyPrice.toLocaleString('en-IN')} ₹`}</span>
 
-                                        <span className='text-main text-[15px]' style={{ fontWeight: "700" }}>{"50 % off"}</span>
+                                        <span className='text-main text-[15px]' style={{ fontWeight: "700" }}>{`${Math.floor(singleProductData?.offer)}% off`}</span>
                                     </div>
                                     <div className='mt-[-5px]'>
 

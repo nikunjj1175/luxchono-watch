@@ -38,23 +38,37 @@ export const LoginApi = createApi({
     }),
     ForgotPassword: builder.mutation({
       query: (body) => ({
-        url: '/forgot-password',
-        method: 'post',
+        url: "/forgot-password",
+        method: "post",
         body,
       }),
     }),
     ResetPassword: builder.mutation({
       query: ({ id, newPassword }) => ({
         url: `/reset-password?id=${id || "-"}`,
-        method: 'post',
+        method: "post",
         body: { newPassword },
       }),
     }),
     ChangePassword: builder.mutation({
       query: (body) => ({
         url: `/change-password`,
-        method: 'post',
-        body
+        method: "post",
+        body,
+      }),
+    }),
+    profile: builder.query({
+      query: () => {
+        return {
+          url: `/profile`,
+        };
+      },
+    }),
+    EditProfile : builder.mutation({
+      query: (body) => ({
+        url: `/edit-profile`,
+        method: "post",
+        body,
       }),
     }),
   }),
@@ -67,6 +81,7 @@ export const {
   useRegisterMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
-  useChangePasswordMutation
-  
+  useChangePasswordMutation,
+  useProfileQuery,
+  useEditProfileMutation
 } = LoginApi;

@@ -1,8 +1,4 @@
-import {
-  Paper,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Paper, Grid, Typography } from "@mui/material";
 import LoginImg from "../../assets/image/LoginImg2.svg";
 import TextFields from "../../components/common/TextFields";
 import "./style.scss";
@@ -38,7 +34,7 @@ export default function Login() {
         .matches(REGEX.EMAIL, STRING.LOGIN_EMAIL_FORMAT),
       password: Yup.string()
         .required(STRING.LOGIN_PASSWORD_REQUIRED)
-        .min(6, STRING.LOGIN_PASSWORD_FORMAT),
+        .matches(REGEX.STORAGE, STRING.PAASWORD_STORANGE),
     }),
     onSubmit: async (values) => {
       try {
@@ -46,7 +42,7 @@ export default function Login() {
         console.log(response, "responseee");
         const { success, message, token, data } = response?.data;
         if (success) {
-          actions.modal.closeMobileDrawer()
+          actions.modal.closeMobileDrawer();
           toast.success(message);
           await localStorage.setItem("lw-token", token);
           navigate("/home");
@@ -132,7 +128,10 @@ export default function Login() {
                         }
                       />
                     </div>
-                    <Link className='flex justify-end mt-[0.2rem] text-main text-[15px] cursor-pointer' to={'/forgotpassword'} >
+                    <Link
+                      className="flex justify-end mt-[0.2rem] text-main text-[15px] cursor-pointer"
+                      to={"/forgotpassword"}
+                    >
                       {STRING.FORGOT_PASSWORD_LINK}
                     </Link>
                   </div>

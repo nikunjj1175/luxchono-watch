@@ -17,6 +17,7 @@ export default function LogoutModal({ onCloseMobileDrawer }) {
 
   const logout = () => {
     actions.modal.closeMobileDrawer()
+    window.location.reload(false);
     navigate('/home')
     onCancel();
     localStorage.removeItem("lw-token")

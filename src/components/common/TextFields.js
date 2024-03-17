@@ -12,7 +12,7 @@ export default function TextFields(props) {
       type={type}
       inputProps={{
         accept: accept,
-        multiple: multiple, // Add this line
+        multiple: multiple, 
       }}
       InputProps={{
         endAdornment: endAdornment && (

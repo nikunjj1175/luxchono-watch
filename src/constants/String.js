@@ -38,10 +38,15 @@ export const STRING = {
   EMAIL_VERFIY_MESSAGE:
     "Please verify your account in mail with Invitation link",
   LUXCHONO: "Luxchono",
-  REGISTER_PHONNO: "phon Number",
+  REGISTER_PHONNO: "phone Number",
   REGISTER_PHONNO_PLACEHOLDER: "Enter Phon Number",
   REGISTER_PHONNO_REQUIRED: "Phon Number is required",
-  FORGOT_PASSWORD_LINK: 'Forgot password?',
+  FORGOT_PASSWORD_LINK: "Forgot password?",
+  INVALID_NUMBER : "Invalid phone number",
+  PAASWORD_STORANGE:
+    "Password must contain at least one digit, one lowercase character, and one uppercase character. Minimum length is 8 characters",
+  USER_NAME_STORANGE:
+    "Username must be 3-8 characters, alphanumeric, with at least 2 letters",
 
   NOW_GOTO_LOGIN: "Now go to Login",
   CHECK_MAIL_BOX: "Check your mail",

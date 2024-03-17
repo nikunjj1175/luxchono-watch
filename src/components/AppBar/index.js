@@ -98,7 +98,7 @@ function DrawerAppBar(props) {
           </ListItemButton>
 
         </ListItem>
-        <ListItem disablePadding>
+     {token && <ListItem disablePadding>
           <ListItemButton
             className={`${pathname === "/profile" ? `!text-main !bg-lihgtmain` : ""}`}
             sx={{ textAlign: "center" }}
@@ -108,7 +108,8 @@ function DrawerAppBar(props) {
             }}>
             <ListItemText primary={"Profile"} />
           </ListItemButton>
-        </ListItem>
+        </ListItem>}   
+
         <ListItem disablePadding>
           {token ? (<ListItemButton sx={{ textAlign: "center" }} onClick={() => actions.modal.openLogoutModal()} >
             <ListItemText primary={"Logout"} />
@@ -177,7 +178,7 @@ function DrawerAppBar(props) {
                 <Button className={`!text-secondary ${pathname === "/home" ? `active_button` : ""} `} onClick={() => navigate("/home")}>{"Home"}</Button>
                 <Button className={`!text-secondary ${pathname === "/products" ? `active_button` : ""} `} onClick={() => navigate("/products")}>{"Products"}</Button>
                 <Button className={`!text-secondary ${pathname === "/order" ? `active_button` : ""} `} onClick={() => navigate("/order")}>{"Order"}</Button>
-                <Button className={`!text-secondary ${pathname === "/profile" ? `active_button` : ""} `} onClick={() => navigate("/profile")}>{"Profile"}</Button>
+               {token &&  <Button className={`!text-secondary ${pathname === "/profile" ? `active_button` : ""} `} onClick={() => navigate("/profile")}>{"Profile"}</Button>} 
 
                 {token ? <Button
                   className="!text-secondary"
