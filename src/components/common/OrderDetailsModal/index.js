@@ -25,7 +25,7 @@ export default function OrderDetailsModal() {
 
   const [orderDetails, setOrderDetails] = useState([]);
 
-  console.log(orderDetails, "orderDetails");
+  console.log(orderDetails?._id, "orderDetails");
 
   useEffect(() => {
     setOrderDetails(DialogOpen?.data);
@@ -162,7 +162,7 @@ export default function OrderDetailsModal() {
         </div>
       </Dialog>
 
-      <CancelOrderModal />
+      <CancelOrderModal orderId={orderDetails?._id} onCancelOrderdetails={onCancel}/>
     </>
   );
 }

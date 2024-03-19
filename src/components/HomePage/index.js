@@ -3,17 +3,17 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style.scss"; // Import your CSS file
 import { Grid } from "@mui/material";
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import CustomeCarousel from "../common/CustomeCarousel";
 import ProductBox from "../common/ProductBox";
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import Partners from "../../assets/image/partners.png"
-import Slider from 'react-infinite-logo-slider'
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import Partners from "../../assets/image/partners.png";
+import Slider from "react-infinite-logo-slider";
 import { useNavigate } from "react-router-dom";
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
-import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
-import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
+import AutorenewOutlinedIcon from "@mui/icons-material/AutorenewOutlined";
+import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
 import { actions } from "../../redux/store";
 import OrderConformModal from "../common/OrderConformModal";
 import { useGetLikeProductQuery, useGetProductQuery } from "../../api/Product";
@@ -23,72 +23,83 @@ import LoginAlertModal from "../common/LoginAlertModal";
 export default function HomePage() {
   // call product api
 
-  const { data: PopularProductApiData, isFetching: PopularProductFetching } = useGetProductQuery({ size: 8 });
+  const { data: PopularProductApiData, isFetching: PopularProductFetching } =
+    useGetProductQuery({ size: 8 });
 
-  const { data: FeaturedProductApiData, isFetching: FeaturedProductFetching } = useGetProductQuery({ size: 6 });
+  const { data: FeaturedProductApiData, isFetching: FeaturedProductFetching } =
+    useGetProductQuery({ size: 6 });
 
-  const { data: LikeProductApiData, isFetching: likeProductFetching } = useGetLikeProductQuery();
+  const { data: LikeProductApiData, isFetching: likeProductFetching } =
+    useGetLikeProductQuery();
 
-  const { data: brandApiData, isFetching: brandFetching } = useGetAllBrandApiQuery();
-
+  const { data: brandApiData, isFetching: brandFetching } =
+    useGetAllBrandApiQuery();
 
   const [popularProductData, setPopularProductData] = useState([]);
-  const [featuredProductData, setFeaturedProductData] = useState([])
-  const [brandData, setBrandData] = useState([])
+  const [featuredProductData, setFeaturedProductData] = useState([]);
+  const [brandData, setBrandData] = useState([]);
 
   useEffect(() => {
-    actions.loder.setLoading(PopularProductFetching && FeaturedProductFetching && likeProductFetching && brandFetching);
-    setPopularProductData(PopularProductApiData?.data)
-    setFeaturedProductData(FeaturedProductApiData?.data)
-    setBrandData(brandApiData?.data)
+    actions.loder.setLoading(
+      PopularProductFetching &&
+        FeaturedProductFetching &&
+        likeProductFetching &&
+        brandFetching
+    );
+    setPopularProductData(PopularProductApiData?.data);
+    setFeaturedProductData(FeaturedProductApiData?.data);
+    setBrandData(brandApiData?.data);
 
-    actions.loder.setLoading(PopularProductFetching && FeaturedProductFetching && likeProductFetching && brandFetching);
-  }, [PopularProductApiData, FeaturedProductApiData, brandApiData])
+    actions.loder.setLoading(
+      PopularProductFetching &&
+        FeaturedProductFetching &&
+        likeProductFetching &&
+        brandFetching
+    );
+  }, [PopularProductApiData, FeaturedProductApiData, brandApiData]);
 
   const navigate = useNavigate();
   const images = [
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/LUNAR_Link_Banner_WEB_2_1440x.jpg?v=1707809481",
+      url: "https://res.cloudinary.com/dshmvvmur/image/upload/v1710781338/luxchono/mhfyi9z3oc74gkylxlzj.png",
     },
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/Ultima_Select_Banner_WEB_1440x.jpg?v=1707460925",
+      url: "https://res.cloudinary.com/dshmvvmur/image/upload/v1710781481/luxchono/spmi5pqaseeuzq2y53dy.png",
     },
     {
       url: "https://www.boat-lifestyle.com/cdn/shop/files/161_Pro_Buds_Banner_WEB_1_1440x.jpg?v=1704959022",
-
     },
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/Without_Personalization_WEB_Banner_1_1440x.jpg?v=1703831371"
-    }
+      url: "https://www.boat-lifestyle.com/cdn/shop/files/Without_Personalization_WEB_Banner_1_1440x.jpg?v=1703831371",
+    },
   ];
 
   const partnersImages = [
     {
-      url: Partners
+      url: Partners,
     },
     {
-      url: Partners
+      url: Partners,
     },
     {
-      url: Partners
+      url: Partners,
     },
     {
-      url: Partners
-    }
-  ]
+      url: Partners,
+    },
+  ];
 
   const hello = () => {
     actions.loder.setLoading(true);
-  }
+  };
 
   const ViewAllProduct = () => {
-    navigate("/products")
-  }
+    navigate("/products");
+  };
 
   const open = () => {
-    console.log(window)
-  }
-
+    console.log(window);
+  };
 
   return (
     <>
@@ -97,12 +108,14 @@ export default function HomePage() {
           infiniteLoop={true}
           showThumbs={false}
           autoPlay={true}
-          showStatus={false}>
+          showStatus={false}
+        >
           {images.map((image, index) => (
             <div
               className="slider_images"
               key={index}
-              style={{ height: "100%", width: "100%", overflow: "hidden" }}>
+              style={{ height: "100%", width: "100%", overflow: "hidden" }}
+            >
               <img
                 className="slider_image"
                 src={image.url}
@@ -116,31 +129,43 @@ export default function HomePage() {
 
       <div className="popular_div flex justify-between items-center">
         <div className="flex gap-[3px] items-center">
-          <span className="popular_span underline  decoration-main" onClick={() => actions.modal.openOrderConformModal()} >{"Popular"}</span>
+          <span
+            className="popular_span underline  decoration-main"
+            onClick={() => actions.modal.openOrderConformModal()}
+          >
+            {"Popular"}
+          </span>
           <span className="popular_span2 ">{"Watches"}</span>
         </div>
 
-        <div className="flex  gap-[5px] view_div  cursor-pointer" onClick={ViewAllProduct}>
+        <div
+          className="flex  gap-[5px] view_div  cursor-pointer"
+          onClick={ViewAllProduct}
+        >
           <span className="text-hide !font-bold text-[16px]">View All</span>
           <div>
-            <ArrowCircleRightOutlinedIcon className="text-main " style={{ fontSize: "19px" }} />
+            <ArrowCircleRightOutlinedIcon
+              className="text-main "
+              style={{ fontSize: "19px" }}
+            />
           </div>
         </div>
       </div>
 
       <div className="pwatch_div m-[1rem]">
-        <Grid container spacing={4} className="pwatch_grid" >
-
+        <Grid container spacing={4} className="pwatch_grid">
           {popularProductData?.map((productItem, index) => {
             return (
               <>
-                <Grid item xs={12} lg={3} md={4} sm={6}  >
-                  <ProductBox productItem={productItem} LikeProductApiData={LikeProductApiData} />
+                <Grid item xs={12} lg={3} md={4} sm={6}>
+                  <ProductBox
+                    productItem={productItem}
+                    LikeProductApiData={LikeProductApiData}
+                  />
                 </Grid>
               </>
-            )
+            );
           })}
-
         </Grid>
       </div>
 
@@ -150,35 +175,50 @@ export default function HomePage() {
 
       <div className="featur_div flex justify-between items-center">
         <div className="flex gap-[3px] items-center">
-          <span className="featur_span underline  decoration-main" >{"Featured"}</span>
+          <span className="featur_span underline  decoration-main">
+            {"Featured"}
+          </span>
           <span className="featur_span2 ">{"Watches"}</span>
         </div>
 
-        <div className="flex gap-[5px] view_div cursor-pointer" onClick={ViewAllProduct}>
-          <span className="text-hide !font-bold text-[16px] cursor-pointer">View All</span>
-          <div >
-            <ArrowCircleRightOutlinedIcon className="text-main " style={{ fontSize: "19px" }} />
+        <div
+          className="flex gap-[5px] view_div cursor-pointer"
+          onClick={ViewAllProduct}
+        >
+          <span className="text-hide !font-bold text-[16px] cursor-pointer">
+            View All
+          </span>
+          <div>
+            <ArrowCircleRightOutlinedIcon
+              className="text-main "
+              style={{ fontSize: "19px" }}
+            />
           </div>
         </div>
       </div>
 
       <div className="fwatch_div m-[1rem]">
-        <Grid container spacing={4} className="pwatch_grid" >
+        <Grid container spacing={4} className="pwatch_grid">
           {featuredProductData?.map((productItem, index) => {
             return (
               <>
-                <Grid item xs={12} lg={3} md={4} sm={6}  >
-                  <ProductBox productItem={productItem} LikeProductApiData={LikeProductApiData} />
+                <Grid item xs={12} lg={3} md={4} sm={6}>
+                  <ProductBox
+                    productItem={productItem}
+                    LikeProductApiData={LikeProductApiData}
+                  />
                 </Grid>
               </>
-            )
+            );
           })}
         </Grid>
       </div>
 
       <div className="official_div flex gap-[5px] justify-center items-center">
         <div>
-          <span className="!font-bold text-[23px] underline  decoration-main" >{"Official Partners"}</span>
+          <span className="!font-bold text-[23px] underline  decoration-main">
+            {"Official Partners"}
+          </span>
         </div>
         <div>
           <HandshakeIcon className="text-main" style={{ fontSize: "35px" }} />
@@ -191,7 +231,8 @@ export default function HomePage() {
           duration={100}
           pauseOnHover={true}
           blurBorders={false}
-          blurBoderColor={'#fff'}>
+          blurBoderColor={"#fff"}
+        >
           {brandData?.map((brand, index) => {
             return (
               <>
@@ -199,44 +240,62 @@ export default function HomePage() {
                   <img src={brand?.icon} alt="any" className="w-[6.5rem]" />
                 </Slider.Slide>
               </>
-            )
+            );
           })}
         </Slider>
       </div>
 
       <div className="mt-[3rem]">
         <Grid container className="services_grid bg-darkbg mt-[3rem]">
-          <Grid item xs={12} lg={3} md={6} sm={6} >
-            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%] " >
-              <GppGoodOutlinedIcon style={{ fontSize: "60px" }} className="text-secondary" />
-              <span className="text-secondary text-[20px] !font-medium capitalize">{"100% ORIGINAL"}</span>
+          <Grid item xs={12} lg={3} md={6} sm={6}>
+            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%] ">
+              <GppGoodOutlinedIcon
+                style={{ fontSize: "60px" }}
+                className="text-secondary"
+              />
+              <span className="text-secondary text-[20px] !font-medium capitalize">
+                {"100% ORIGINAL"}
+              </span>
             </div>
           </Grid>
-          <Grid item xs={12} lg={3} md={6} sm={6}  >
-            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]" >
-              <LocalShippingIcon style={{ fontSize: "60px" }} className="text-secondary" />
-              <span className="text-secondary text-[20px] !font-medium capitalize">{"FREE SHIPPING"}</span>
+          <Grid item xs={12} lg={3} md={6} sm={6}>
+            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]">
+              <LocalShippingIcon
+                style={{ fontSize: "60px" }}
+                className="text-secondary"
+              />
+              <span className="text-secondary text-[20px] !font-medium capitalize">
+                {"FREE SHIPPING"}
+              </span>
             </div>
           </Grid>
-          <Grid item xs={12} lg={3} md={6} sm={6}  >
-            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]" >
-              <BeenhereOutlinedIcon style={{ fontSize: "60px" }} className="text-secondary" />
-              <span className="text-secondary text-[20px] !font-medium capitalize">{"Full Warranty"}</span>
+          <Grid item xs={12} lg={3} md={6} sm={6}>
+            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]">
+              <BeenhereOutlinedIcon
+                style={{ fontSize: "60px" }}
+                className="text-secondary"
+              />
+              <span className="text-secondary text-[20px] !font-medium capitalize">
+                {"Full Warranty"}
+              </span>
             </div>
           </Grid>
-          <Grid item xs={12} lg={3} md={6} sm={6}  >
-            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]" >
-              <AutorenewOutlinedIcon style={{ fontSize: "60px" }} className="text-secondary" />
-              <span className="text-secondary text-[20px] !font-medium capitalize">{"7-day Replacement"}</span>
+          <Grid item xs={12} lg={3} md={6} sm={6}>
+            <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%]">
+              <AutorenewOutlinedIcon
+                style={{ fontSize: "60px" }}
+                className="text-secondary"
+              />
+              <span className="text-secondary text-[20px] !font-medium capitalize">
+                {"7-day Replacement"}
+              </span>
             </div>
           </Grid>
         </Grid>
-
       </div>
 
       <OrderConformModal />
       <LoginAlertModal />
-
     </>
   );
 }

@@ -46,8 +46,26 @@ export const OrderApi = createApi({
             },
             providesTags: ['Order'],
         }),
+        CancelOrder :builder.query({
+            query: (orderId) => {
+                return {
+                    url: `/order/cancel-order`,
+                };
+            },
+            providesTags: ['Order'],
+        }),
+        CancelOrder: builder.mutation({
+            query: (body) => {
+                return {
+                    url: `/order/cancel-order`,
+                    method: "post",
+                    body,
+                }
+            },
+            invalidatesTags: ['Order'],
+        }),
 
     }),
 });
 
-export const { useMakeOrderMutation, usePaymentOrderMutation, useGetOrderQuery ,useGetAllOrderQuery } = OrderApi;
+export const { useMakeOrderMutation, usePaymentOrderMutation, useGetOrderQuery ,useGetAllOrderQuery,useCancelOrderMutation } = OrderApi;

@@ -13,6 +13,14 @@
         cursor: pointer;
     }
 
+    .review_heading{
+        font-weight: 600;
+        color: black;
+        font-size: 16px;
+        margin-top: 1.3rem;
+
+    }
+
     .add_cart_icon {
         font-size: 28px;
     }
@@ -72,6 +80,20 @@
 
 @media (max-width: 700px) {
     .product_details {
+
+        .rating_title{
+            display: flex;
+            justify-content: start !important;
+            flex-direction: column;
+            align-items: start !important;
+            gap: 3px;
+        }
+
+        .time_date_rating{
+            width:100% !important;
+            justify-content:  start !important;
+            
+        }
         .carousel .thumb {
             width: 55px !important;
             height: 55px !important;
