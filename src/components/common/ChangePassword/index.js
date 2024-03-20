@@ -128,7 +128,7 @@ function ChangePasswordDrawer() {
             <div className="p-[0.8rem]">
               <div className="first_from_value">
                 <div className="flex flex-col gap-[3px]">
-                  <span className="input_heading">Password</span>
+                  <span className="input_heading">Current Password</span>
                   <TextFields
                     name={"password"}
                     value={changePassword.values.password}

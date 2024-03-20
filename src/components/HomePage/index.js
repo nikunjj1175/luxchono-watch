@@ -67,10 +67,10 @@ export default function HomePage() {
       url: "https://res.cloudinary.com/dshmvvmur/image/upload/v1710781481/luxchono/spmi5pqaseeuzq2y53dy.png",
     },
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/161_Pro_Buds_Banner_WEB_1_1440x.jpg?v=1704959022",
+      url: "https://res.cloudinary.com/dshmvvmur/image/upload/v1710953890/luxchono/yrejh5jahi47il3uxmpn.jpg",
     },
     {
-      url: "https://www.boat-lifestyle.com/cdn/shop/files/Without_Personalization_WEB_Banner_1_1440x.jpg?v=1703831371",
+      url: "https://res.cloudinary.com/dshmvvmur/image/upload/v1710954090/luxchono/uj571mrkxyfebaaf9hih.jpg",
     },
   ];
 
@@ -245,7 +245,7 @@ export default function HomePage() {
         </Slider>
       </div>
 
-      <div className="mt-[3rem]">
+      <div className="mt-[3rem] " style={{marginBottom:"-3rem"}}>
         <Grid container className="services_grid bg-darkbg mt-[3rem]">
           <Grid item xs={12} lg={3} md={6} sm={6}>
             <div className="flex flex-col gap-[10px] justify-center items-center h-[10rem] w-[100%] ">
