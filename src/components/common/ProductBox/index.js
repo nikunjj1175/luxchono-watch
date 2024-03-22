@@ -69,7 +69,7 @@ export default function ProductBox({ productItem, LikeProductApiData }) {
   return (
     <>
       <div>
-        <div className="h-[26rem] w-[100%] flex flex-col gap-[10px] rounded-[12px] paperboxshadow p-[0.5rem] cursor-pointer">
+        <div className="h-[26rem] w-[100%] flex flex-col gap-[10px] rounded-[12px] paperboxshadow p-[0.5rem] cursor-pointer border-2 hover:border-4">
           <div
             className="w-[90%] h-[300px]"
             style={{
