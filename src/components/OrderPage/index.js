@@ -79,6 +79,7 @@ export default function OrderPage() {
 
               <div className="mt-[1.3rem]" style={{ minHeight: "50vh" }}>
                 {allOrderData?.map((order, index) => {
+                  console.log(allOrderData, "1111111111111111");
                   return (
                     <>
                       <Accordion
@@ -128,12 +129,30 @@ export default function OrderPage() {
                               </span>
                             </div>
 
-                            <div>
-                              <span className="text-lighttext order_date">
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "42px",
+                              }}
+                            >
+                              <span className="text-lighttext order_method">
                                 {dayjs(order?.date)?.format(
                                   "MMMM D, YYYY h:mm A"
                                 )}
                               </span>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "5px",
+                                }}
+                              >
+                                <span className="order_method">
+                                  {"Payment method :"}
+                                </span>
+                                <span className="order_method_dec">{`${order?.method} (${order?.paymentStatus})`}</span>
+                              </div>
                             </div>
                           </div>
                         </AccordionSummary>

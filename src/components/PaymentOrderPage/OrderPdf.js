@@ -149,6 +149,10 @@ const OrderPdf = ({ orderData }) => {
                                 <Text >{"Order date : "}</Text>
                                 <Text>{dayjs(orderData?.date).format('MMM DD, YYYY')}</Text>
                             </Text>
+                            <Text>
+                                <Text >{"Payment method : "}</Text>
+                                <Text>{`${orderData?.method} (${orderData?.paymentStatus})`}</Text>
+                            </Text>
                         </View>
                     </View>
 
