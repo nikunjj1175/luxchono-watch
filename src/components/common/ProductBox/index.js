@@ -7,7 +7,7 @@ import {
   useGetLikeProductQuery,
   useLikeProductMutation,
 } from "../../../api/Product";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { actions } from "../../../redux/store";
 import LoginAlertModal from "../LoginAlertModal";

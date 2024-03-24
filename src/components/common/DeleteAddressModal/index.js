@@ -7,7 +7,7 @@ import { actions } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../Buttons';
 import { useDeleteAddressMutation } from '../../../api/Address';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function DeleteAddressModal() {
 

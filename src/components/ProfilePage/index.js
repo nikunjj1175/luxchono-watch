@@ -17,7 +17,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { REGEX } from "../../constants/Regex";
 import { STRING } from "../../constants/String";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 
 export default function ProfilePage() {
   const [checkbox] = useState(false);

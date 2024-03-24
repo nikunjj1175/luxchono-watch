@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAddToCartMutation, useGetCartProductQuery } from "../../api/Cart";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { actions } from "../../redux/store";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import {
   useGetLikeProductQuery,
   useGetProductQuery,

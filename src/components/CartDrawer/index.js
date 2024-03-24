@@ -22,7 +22,7 @@ import {
   useMakeOrderQuery,
   usePaymentOrderMutation,
 } from "../../api/Order";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useGetSingleAddressQuery } from "../../api/Address";
 import { escape } from "lodash";
 import dayjs from "dayjs";
@@ -51,14 +51,10 @@ function CartDrawer() {
 
   const [paymentOrderData, setPaymentOrderData] = useState([]);
 
-  console.log(paymentOrderData, "paymentOrderData");
-
   const [PaymentOrder, { isLoading: PaymentFetching }] =
     usePaymentOrderMutation();
 
   const [checkbox] = useState(true);
-
-  console.log(makeOrderData, "makeOrderData");
 
   const navigate = useNavigate();
 
@@ -69,7 +65,6 @@ function CartDrawer() {
   useEffect(() => {
     setCartProductData(CartProductApiData?.data?.cartProducts);
     setCartTotalSummary(CartProductApiData?.data);
-
   }, [CartProductApiData]);
 
   //make order body data
@@ -107,7 +102,7 @@ function CartDrawer() {
       const response = await MakeOrder(makeOrderData);
       const { statusCode, message, data } = response?.data;
       if (statusCode === 200) {
-        toast.success(message);
+        // toast.success(message);
         setOrderSummaryData(data);
 
         console.log(data?.orderProducts, "data?.orderProducts");
@@ -134,7 +129,7 @@ function CartDrawer() {
 
   const continuePayment = async () => {
     if (!selectedSingleAddress?._id) {
-      setShowAddError(true)
+      setShowAddError(true);
     } else {
       try {
         actions.loder.setLoading(true);
@@ -155,9 +150,31 @@ function CartDrawer() {
     }
   };
 
+  const continueCOD = async () => {
+    if (!selectedSingleAddress?._id) {
+      setShowAddError(true);
+    } else {
+      try {
+        actions.loder.setLoading(true);
+        const body = { ...paymentOrderData, cod: true };
+        const response = await PaymentOrder(body);
+        const { statusCode, message, data } = response?.data;
+        if (statusCode === 200) {
+          navigate(`/paymentorder?orderId=${data?.orderId}`);
+          onCancel();
+        } else {
+          toast.error(message);
+        }
+        actions.loder.setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setShowAddError(false)
+    setShowAddError(false);
   };
 
   //go to home
@@ -169,7 +186,7 @@ function CartDrawer() {
   //oncancel
   const onCancel = () => {
     actions.modal.closeCartDrawer();
-    setShowAddError(false)
+    setShowAddError(false);
   };
 
   return (
@@ -403,10 +420,13 @@ function CartDrawer() {
                           className={"cart_add_address_btn"}
                         />
 
-                        {showAddError && <div className="flex  justify-center">
-                          <span className="address_error">{"Please select your delivery address"}</span>
-                        </div>}
-
+                        {showAddError && (
+                          <div className="flex  justify-center">
+                            <span className="address_error">
+                              {"Please select your delivery address"}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     )}
                     {/*-------------------address not are available then show this div------------------------ */}
@@ -487,7 +507,7 @@ function CartDrawer() {
                         {activeStep === 0
                           ? `Sub Total (${cartTotalSummary?.cartProducts?.length} items)`
                           : activeStep === 1 &&
-                          `Sub Total (${orderSummaryData?.orderProducts?.length} items)`}
+                            `Sub Total (${orderSummaryData?.orderProducts?.length} items)`}
                       </span>
 
                       <>
@@ -502,12 +522,12 @@ function CartDrawer() {
                       >
                         {activeStep === 0
                           ? `${cartTotalSummary?.cartTotalAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`
+                              "en-IN"
+                            )} ₹`
                           : activeStep === 1 &&
-                          `${orderSummaryData?.totalAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`}
+                            `${orderSummaryData?.totalAmount?.toLocaleString(
+                              "en-IN"
+                            )} ₹`}
                       </span>
                     </div>
                     <div className="flex justify-between ">
@@ -523,12 +543,12 @@ function CartDrawer() {
                       >
                         {activeStep === 0
                           ? `${cartTotalSummary?.cartDiscountAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`
+                              "en-IN"
+                            )} ₹`
                           : activeStep === 1 &&
-                          `${orderSummaryData?.discountAmount?.toLocaleString(
-                            "en-IN"
-                          )} ₹`}
+                            `${orderSummaryData?.discountAmount?.toLocaleString(
+                              "en-IN"
+                            )} ₹`}
                       </span>
                     </div>
                     <div className="flex justify-between ">
@@ -543,14 +563,16 @@ function CartDrawer() {
                         style={{ fontWeight: "600" }}
                       >
                         {activeStep === 0
-                          ? `${cartTotalSummary?.shippingCharge?.toLocaleString(
-                            "en-IN"
-                          ) || 0
-                          } ₹`
-                          : `${orderSummaryData?.shippingCharge?.toLocaleString(
-                            "en-IN"
-                          ) || 0
-                          } ₹`}
+                          ? `${
+                              cartTotalSummary?.shippingCharge?.toLocaleString(
+                                "en-IN"
+                              ) || 0
+                            } ₹`
+                          : `${
+                              orderSummaryData?.shippingCharge?.toLocaleString(
+                                "en-IN"
+                              ) || 0
+                            } ₹`}
                       </span>
                     </div>
                   </div>
@@ -567,11 +589,11 @@ function CartDrawer() {
                     >
                       {activeStep === 0
                         ? `${cartTotalSummary?.cartPaymentAmount?.toLocaleString(
-                          "en-IN"
-                        )} ₹`
+                            "en-IN"
+                          )} ₹`
                         : `${orderSummaryData?.paymentAmount?.toLocaleString(
-                          "en-IN"
-                        )} ₹`}
+                            "en-IN"
+                          )} ₹`}
                     </span>
                   </div>
                 </div>
@@ -584,7 +606,9 @@ function CartDrawer() {
                     >
                       <span>Delivered on</span>
                       <span className="text-main underline  decoration-main">
-                        {dayjs(orderSummaryData?.deliveryDate).format('MMM DD, YYYY')}
+                        {dayjs(orderSummaryData?.deliveryDate).format(
+                          "MMM DD, YYYY"
+                        )}
                       </span>
                     </span>
                   </div>
@@ -613,9 +637,17 @@ function CartDrawer() {
                       <Buttons
                         onClick={continuePayment}
                         type={"submit"}
-                        text={"Continue"}
+                        text={"Pay Online"}
                         variant={"contained"}
                         className={"continue"}
+                      />
+
+                      <Buttons
+                        onClick={continueCOD}
+                        type={"submit"}
+                        text={"COD"}
+                        variant={"contained"}
+                        className={"cod"}
                       />
                     </>
                   )}

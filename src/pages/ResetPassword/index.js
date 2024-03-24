@@ -6,7 +6,7 @@ import Buttons from "../../components/common/Buttons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { STRING } from "../../constants/String";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import Loader from "../../components/common/Loader";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";

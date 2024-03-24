@@ -8,7 +8,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import Buttons from '../Buttons';
 import { useEffect, useState } from 'react';
 import { useRemoveToCartMutation } from '../../../api/Cart';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function RemoveProductDrawer() {
 

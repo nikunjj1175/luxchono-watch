@@ -7,7 +7,7 @@ import "./style.scss";
 import TextFields from "../TextFields";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import { useChangePasswordMutation } from "../../../api/Login";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";

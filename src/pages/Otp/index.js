@@ -5,7 +5,7 @@ import "./style.scss";
 import Buttons from "../../components/common/Buttons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import Loader from "../../components/common/Loader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MuiOtpInput } from "mui-one-time-password-input";

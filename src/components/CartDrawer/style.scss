@@ -175,9 +175,18 @@
         text-transform: capitalize;
         font-size: 15px;
         margin-top: 0.5rem;
-        width: 6rem !important;
+        width: 8rem !important;
         cursor: pointer;
+    }
 
+    .cod {
+        font-weight: 600;
+        height: 2.5rem;
+        color: $white !important;
+        text-transform: capitalize;
+        font-size: 15px;
+        margin-top: 0.5rem;
+        cursor: pointer;
     }
 }
 
@@ -306,7 +315,11 @@
 
         .continue {
             font-size: 14px !important;
-            width: 4.8rem !important;
+            width: 7rem !important;
+        }
+
+        .cod {
+            font-size: 14px !important;
         }
 
         .delivered_title {

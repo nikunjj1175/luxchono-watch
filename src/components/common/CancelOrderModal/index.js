@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Buttons from "../Buttons";
 import WarningIcon from "@mui/icons-material/Warning";
 import { useCancelOrderMutation } from "../../../api/Order";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 
 export default function CancelOrderModal({ orderId, onCancelOrderdetails }) {
   const DialogOpen = useSelector((state) => state.modal.CancelOrder);

@@ -20,7 +20,7 @@ import {
   useAddAddressMutation,
   useEditAddressMutation,
 } from "../../../api/Address";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import { STRING } from "../../../constants/String";
 function AddAddressDrawer() {
   const DialogOpen = useSelector((state) => state.modal.AddAddress);

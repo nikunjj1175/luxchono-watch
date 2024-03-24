@@ -11,7 +11,7 @@ import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
 import { useCartQuantityMutation } from '../../../api/Cart';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function AddQuantityMoadl() {
 

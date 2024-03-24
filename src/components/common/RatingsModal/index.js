@@ -11,7 +11,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Buttons from "../Buttons";
 import { useRatingMutation } from "../../../api/Rating";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 
 export default function RatingModal() {
   const DialogOpen = useSelector((state) => state.modal.Rating);
